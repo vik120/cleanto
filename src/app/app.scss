@@ -1,0 +1,82 @@
+
+@import '../assets/styles/style';
+
+
+.md-field{
+	&:after{
+		background: var(--border-color);
+	}
+
+	&:before{
+		background: var(--active-color);
+	}
+}
+
+.md-radio.md-theme-white-card{
+	.md-radio-container{
+		border-color: var(--border-color);
+	}
+
+	&.md-checked{
+		.md-radio-container{
+			border-color: var(--active-color);
+
+			&:after{
+				background-color: var(--active-color);
+			}
+		}		
+	}
+}
+
+.md-checkbox.md-theme-white-card{
+	.md-checkbox-container{
+		border-color: var(--border-color);
+	}
+
+	&.md-checked{
+		.md-checkbox-container{
+			border-color: var(--active-color);
+			background: var(--active-color);
+
+			&:after{
+				border-color: var(--white);
+			}
+		}		
+	}
+}
+
+.md-card{
+	&.md-primary{
+		background: var(--white);
+
+		.md-title{
+			font-size: 20px;
+		}
+	}
+}
+
+.card{
+	.card-body{
+		.card-title{
+			font-size: 18px;
+			margin-bottom: 0;
+			color: var(--dark);
+			&:hover{
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.md-theme-white-card{
+	&.md-button{
+		&.md-primary{
+			background: var(--active-color);
+			color: var(--white);
+		}
+
+		&.btn-lg{
+			padding: 0.5rem 1rem;
+		}
+	}
+}

@@ -1,0 +1,12 @@
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+
+@include md-register-theme("default", (
+ 	primary: #303f9f, // The primary color of your brand
+ 	accent: #7b1fa2 // The secondary color of your brand
+)); 
+@import "~vue-material/dist/theme/all"; // Apply the theme 
+@import 'variables';
+@import 'font';
+@import 'mixin';
+@import 'reset'

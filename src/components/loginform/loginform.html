@@ -1,0 +1,37 @@
+<md-card class="md-primary mb-3" md-theme="white-card">
+  <md-card-header>
+    <div class="md-title">Login</div>
+  </md-card-header>
+
+  <md-card-content>
+
+    <div class="row">
+      <div class="col-sm-6">
+
+        <md-field :class="messageClass">
+          <label>Your Email</label>
+          <md-input v-model="email" required></md-input>
+          <span class="md-error">Please enter a valid email</span>
+        </md-field>
+      </div>
+
+      <div class="col-sm-6">
+        <md-field :class="messageClass">
+          <label>Password</label>
+          <md-input v-model="password" required></md-input>
+          <span class="md-error">There is an error</span>
+        </md-field>
+      </div>
+
+    </div>
+
+  </md-card-content>
+ 
+  <md-card-actions md-alignment="space-between">
+    <div>
+      <md-button>Action</md-button>
+      <md-button>Action</md-button>
+    </div>
+  </md-card-actions>
+ 
+</md-card>

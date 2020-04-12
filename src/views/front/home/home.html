@@ -1,0 +1,201 @@
+<section class="wrapper">
+	<front-header></front-header>
+	<div class="midbody mt-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<md-card class="md-primary mb-3" md-theme="white-card">
+				      <md-card-header>
+				        <div class="md-title">Where would you like us to provide service?</div>
+				      </md-card-header>
+				      <md-card-content>
+				      	<md-field>
+				      		<md-icon>home</md-icon>
+							<label>Zip or Postal Code</label>
+							<md-input v-model="zipcode"></md-input>
+					    </md-field>
+				      </md-card-content>
+				    </md-card> 
+
+				    <h5 class="mb-3">Choose Services</h5>
+
+				    <div class="row">
+				      	<div class="col-md-3 mb-3 col-sm-6 text-center">
+		      	 		 	<router-link to="/">
+		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
+							      <md-card-media>
+							        <img src="../../../assets/images/housecleaning.jpg" alt="People">
+							      </md-card-media>
+
+							      <md-card-header>
+							        <div class="md-title">House Clean</div>
+							      </md-card-header>
+
+							     
+							    </md-card>
+		      	 		 	</router-link>
+			      	 	</div>
+			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center">
+		      	 		 	<router-link to="/">
+		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
+							      <md-card-media>
+							        <img src="../../../assets/images/plumbing.jpg" alt="People">
+							      </md-card-media>
+
+							      <md-card-header>
+							        <div class="md-title">Plumbing</div>
+							      </md-card-header>
+
+							     
+							    </md-card>
+		      	 		 	</router-link>
+			      	 	</div>
+			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center">
+		      	 		 	<router-link to="/">
+		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
+							      <md-card-media>
+							        <img src="../../../assets/images/carpentry.jpg" alt="People">
+							      </md-card-media>
+
+							      <md-card-header>
+							        <div class="md-title">Carpentry</div>
+							      </md-card-header>
+
+							     
+							    </md-card>
+		      	 		 	</router-link>
+			      	 	</div>
+			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center">
+		      	 		 	<router-link to="/">
+		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
+							      <md-card-media>
+							        <img src="../../../assets/images/office-clean.jpg" alt="People">
+							      </md-card-media>
+
+							      <md-card-header>
+							        <div class="md-title">Office Clean</div>
+							      </md-card-header>
+
+							     
+							    </md-card>
+		      	 		 	</router-link>
+			      	 	</div>
+			      	 </div>
+
+
+
+			      	<md-card class="md-primary mb-3" md-theme="white-card">
+				      <md-card-header>
+				        <div class="md-title">How often would you like us to provide service?</div>
+				      </md-card-header>
+				      <md-card-content>
+				    	<div class="row">
+				    		<div class="col-md-3 col-sm-6">
+				    			<md-radio v-model="serviceduration" value="Monthly">Monthly <br /><small class="text-purple">{Save 10%}</small></md-radio>
+				    		</div>
+				    		<div class="col-md-3 col-sm-6">
+				    			<md-radio v-model="serviceduration" value="Bi-weekly">Bi-weekly <br /> <small>{Save 12.5%}</small></md-radio>
+				    		</div>
+				    		<div class="col-md-3 col-sm-6">
+				    			<md-radio v-model="serviceduration" value="weekly">Weekly <br /> <small>{Save 15%}</small></md-radio>
+				    		</div>
+				    		<div class="col-md-3 col-sm-6">
+				    			<md-radio v-model="serviceduration" value="once">Once <br /> <small>(No Discount)</small></md-radio>
+				    		</div>
+				    	</div>  	
+				      </md-card-content>
+				    </md-card> 
+
+				    <div class="calendardatepicker mb-3"> 
+					    <div class="md-title mb-3">When would you like us to come?</div>
+					    <div class="mb-3">
+					    	<FunctionalCalendar
+								v-model="calendarData"
+								:sundayStart="true"
+								:date-format="'dd/mm/yyyy'"
+								:is-date-range='true'
+								:is-date-picker="true"
+								:is-multiple='true'
+								:is-separately='true'
+								:calendars-count='2'
+							></FunctionalCalendar>
+				    	</div>
+
+				    	<md-card class="md-primary mb-3" md-theme="white-card">
+					      <md-card-content>
+					    	<div class="custom-timepicker">
+					    		<md-icon>event</md-icon>
+					    		<VueMaterialDateTimePicker placeholder="Please select time" v-model="time" :is-time-only="true" />
+					    	</div>
+					      </md-card-content>
+					    </md-card> 
+				    </div>
+
+				    <md-card class="md-primary mb-3" md-theme="white-card">
+				      <md-card-header>
+				        <div class="md-title">Your Personal Details</div>
+				      </md-card-header>
+				      <md-card-content>
+				    	<div class="row">
+				    		<div class="col-md-4 col-sm-6">
+				    			<md-radio v-model="userinfo" value="existing">Existing User</md-radio>
+				    		</div>
+				    		<div class="col-md-4 col-sm-6">
+				    			<md-radio v-model="userinfo" value="newuser">New User</md-radio>
+				    		</div>
+				    		<div class="col-md-4 col-sm-6">
+				    			<md-radio v-model="userinfo" value="guestuser">Guest User</md-radio>
+				    		</div> 
+				    	</div>	
+				      </md-card-content>
+				    </md-card>
+
+				    <login />
+
+
+				    <md-card class="md-primary mb-3" md-theme="white-card">
+				      <md-card-header>
+				        <div class="md-title">Preferred Payment Method</div>
+				      </md-card-header>
+				      <md-card-content>
+				    	<div class="row">
+				    		<div class="col-md-4 col-sm-6">
+				    			<md-radio v-model="paymentmethod" value="local">Pay Locally</md-radio>
+				    		</div>
+				    		<div class="col-md-4 col-sm-6">
+				    			<md-radio v-model="paymentmethod" value="card">Card Payment</md-radio>
+				    		</div> 
+				    	</div>  	
+				      </md-card-content>
+				    </md-card>
+
+				    <md-card class="md-primary mb-3" md-theme="white-card">
+				      <md-card-header>
+				        <div class="md-title">CANCELLATION POLICY</div>
+				      </md-card-header>
+				      <md-card-content>
+				    	<div class="mb-2">
+				    		<p>Full refund if cancelled within 24 hours of placing the order. If you cancel the order more than 24 hours, you can get a credit note for the amount paid. If cancelled in less than 24 hours before time of appointment/stay or in case of no-show, order will not be refunded.</p>
+				    	</div>
+				    	
+				    	<md-checkbox v-model="terms">
+				    		I have read and accepted the <router-link to="/">Terms & Conditions</router-link> and <router-link to="/">Privacy Policy.</router-link>.
+				    	</md-checkbox>
+
+				      </md-card-content>
+				      <md-card-actions  class="justify-content-center pb-4">
+				        <md-button type="submit" class="md-primary btn-lg">Complete Booking</md-button>
+				      </md-card-actions>
+				    </md-card>
+
+				    
+				      
+				</div>
+				<div class="col-md-4">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
