@@ -1,5 +1,73 @@
+<md-card class="md-primary mb-3" md-theme="white-card">
+    <md-card-header>
+      <div class="md-title">Guest User</div>
+    </md-card-header>
 
-<section class="guestform">
-  <h1>guestform Component</h1>
-</section>
+    <md-card-content>
+      <div class="row">
+        <div class="col-sm-6">
 
+          <md-field :class="messageClass">
+            <md-icon>email</md-icon>
+            <label>Preferred Email</label>
+            <md-input v-model="email" required></md-input> 
+          </md-field>
+        </div>
+
+       
+        <div class="col-sm-6">
+          <md-field :class="messageClass">
+            <md-icon>phone</md-icon>
+            <label>Phone</label>
+            <md-input v-model="phone" required></md-input> 
+          </md-field>
+        </div>
+
+        <div class="col-sm-6">
+          <md-field :class="messageClass">
+            <md-icon>language</md-icon>
+            <label>Streett Address</label>
+            <md-input v-model="streetAddress" required></md-input> 
+          </md-field>
+        </div>
+
+      </div>
+
+      <div class="row  mb-4">
+      	 <div class="col-sm-4">
+	          <md-field :class="messageClass">
+	            <md-icon>language</md-icon>
+	            <label>Zip Code</label>
+	            <md-input v-model="zipcode" required></md-input> 
+	          </md-field>
+	        </div>
+
+	        <div class="col-sm-4">
+	          <md-field :class="messageClass">
+	            <md-icon>language</md-icon>
+	            <label>City</label>
+	            <md-input v-model="city" required></md-input> 
+	          </md-field>
+	        </div>
+	        
+	        <div class="col-sm-4">
+	          <md-field :class="messageClass">
+	            <md-icon>language</md-icon>
+	            <label>State</label>
+	            <md-input v-model="state" required></md-input> 
+	          </md-field>
+	        </div>
+      </div>
+
+      <h5>Appointment Details</h5>
+
+		<md-field>
+	      <label>Appointment Address</label>
+	     <md-textarea v-model="appointmentAddress" md-autogrow></md-textarea>
+	    </md-field>
+
+	    
+
+    </md-card-content>
+ 
+  </md-card>

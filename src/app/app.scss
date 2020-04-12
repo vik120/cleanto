@@ -1,6 +1,14 @@
 
 @import '../assets/styles/style';
 
+.btn{
+	&:focus,
+	&:hover{
+		outline: none;
+		box-shadow: none;
+	}
+}
+
 
 .md-field{
 	&:after{
@@ -9,6 +17,12 @@
 
 	&:before{
 		background: var(--active-color);
+	}
+
+	&.md-has-textarea{
+		&:before{
+			border-color: var(--border-color) !important;
+		}
 	}
 }
 
@@ -78,5 +92,21 @@
 		&.btn-lg{
 			padding: 0.5rem 1rem;
 		}
+	}
+}
+
+div{
+	&.modal-backdrop{
+		background: rgba(0,0,0, 0.95);
+	}
+}
+
+.md-button{
+	&.md-primary{
+		background: var(--active-color);
+		color: var(--white) !important;
+	}
+	&.btn-lg{
+		padding: 0.5rem 1rem
 	}
 }

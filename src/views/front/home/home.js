@@ -1,13 +1,19 @@
 import FrontHeader from '../../../components/frontheader/index'
 import VueMaterialDateTimePicker from 'vue-material-date-time-picker'
 import LoginForm from '../../../components/loginform/index'
+import RegisterForm from '../../../components/registerform/index'
+import GuestForm from '../../../components/guestform/index'
+import CardPayment from '../../../components/cardpayment/index'
 
 export default {
   name: 'home',
   components: {
     'front-header': FrontHeader,
     VueMaterialDateTimePicker,
-    'login': LoginForm
+    'login': LoginForm,
+    'register': RegisterForm,
+    'guest': GuestForm,
+    'card-info': CardPayment
   },
   props: [],
   data () {
@@ -18,7 +24,9 @@ export default {
       calendarData: {},
       time: '',
       userinfo: 'existing',
-      terms: ''
+      paymentmethod: '',
+      terms: '',
+      promocode: ''
     }
   },
   computed: {

@@ -131,6 +131,20 @@
 					    </md-card> 
 				    </div>
 
+				     <md-card class="md-primary mb-3" md-theme="white-card">
+				      <md-card-header>
+				        <div class="md-title">Promo Code</div>
+				      </md-card-header>
+				    	<md-card-content>
+				    		<md-field>
+						      <md-icon>loyalty</md-icon>
+						      <label>Have a promocode?</label>
+						      <md-input v-model="promocode"></md-input>
+						    </md-field>
+						    <md-button type="button" class="md-primary btn-lg">Apply Promocode</md-button>
+				    	</md-card-content>
+				    </md-card>
+
 				    <md-card class="md-primary mb-3" md-theme="white-card">
 				      <md-card-header>
 				        <div class="md-title">Your Personal Details</div>
@@ -150,7 +164,9 @@
 				      </md-card-content>
 				    </md-card>
 
-				    <login />
+				    <login v-if="userinfo == 'existing'" />
+				    <register v-if="userinfo == 'newuser'" />
+				    <guest v-if="userinfo == 'guestuser'" />
 
 
 				    <md-card class="md-primary mb-3" md-theme="white-card">
@@ -168,6 +184,10 @@
 				    	</div>  	
 				      </md-card-content>
 				    </md-card>
+
+				    <card-info v-if="paymentmethod == 'card'" />
+
+				   
 
 				    <md-card class="md-primary mb-3" md-theme="white-card">
 				      <md-card-header>

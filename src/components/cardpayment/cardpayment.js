@@ -1,12 +1,14 @@
 export default {
-  name: 'loginform',
+  name: 'cardpayment',
   components: {},
   props: [],
   data () {
     return {
-      password: '',
-      email: '',
-      messageClass: 'md-invalid'
+      cardnumber: '',
+      cardName: '',
+      expireDate: '',
+      expireYear: '',
+      cardCVV: ''
     }
   },
   computed: {

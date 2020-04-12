@@ -4,7 +4,14 @@ export default {
   props: [],
   data () {
     return {
-
+      email: '',
+      phone: '',
+      streetAddress: '',
+      zipcode: '',
+      city: '',
+      state: '',
+      appointmentAddress: '',
+      messageClass: ''
     }
   },
   computed: {
