@@ -4,6 +4,7 @@ import LoginForm from '../../../components/loginform/index'
 import RegisterForm from '../../../components/registerform/index'
 import GuestForm from '../../../components/guestform/index'
 import CardPayment from '../../../components/cardpayment/index'
+import BookingSummary from '../../../components/bookingsummary/index'
 
 export default {
   name: 'home',
@@ -13,7 +14,8 @@ export default {
     'login': LoginForm,
     'register': RegisterForm,
     'guest': GuestForm,
-    'card-info': CardPayment
+    'card-info': CardPayment,
+    'book-summary': BookingSummary
   },
   props: [],
   data () {

@@ -6,7 +6,7 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css' 
 
 import $ from 'jquery'  
-import { BootstrapVue, IconsPlugin, NavbarPlugin, FormInputPlugin, CardPlugin, CalendarPlugin, ModalPlugin, ButtonPlugin } from 'bootstrap-vue'
+import { BootstrapVue, IconsPlugin, NavbarPlugin, FormInputPlugin, CardPlugin, CalendarPlugin, ModalPlugin, ButtonPlugin, TooltipPlugin, AlertPlugin } from 'bootstrap-vue'
 import FunctionalCalendar from 'vue-functional-calendar';
 
 Vue.config.productionTip = false 
@@ -14,7 +14,8 @@ Vue.config.productionTip = false
 Vue.use(NavbarPlugin, FormInputPlugin)
 Vue.use(CardPlugin)
 Vue.use(ModalPlugin)
-Vue.use(ButtonPlugin)
+Vue.use(AlertPlugin)
+Vue.use(ButtonPlugin, TooltipPlugin)
 
 Vue.use(FunctionalCalendar, {
     dayNames: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']

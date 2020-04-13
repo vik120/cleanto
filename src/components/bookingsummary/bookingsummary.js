@@ -1,14 +1,10 @@
 export default {
-  name: 'cardpayment',
+  name: 'bookingsummary',
   components: {},
   props: [],
   data () {
     return {
-      cardNumber: '',
-      cardName: '',
-      expireDate: '',
-      expireYear: '',
-      cardCVV: ''
+
     }
   },
   computed: {

@@ -1,0 +1,27 @@
+.bookingsummary {
+	.cart-items-group{
+		.cart-items-list{
+			position: relative;
+			padding-left: 35px;
+
+			.icon{
+				position: absolute;
+				z-index: 1;
+				left: -12px;
+				top: -8px;
+				font-size: 12px;
+
+				.md-ripple{
+					padding: 0;
+
+					.md-icon{
+						width: auto;
+						height: auto;
+						color: var(--danger);
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+}
