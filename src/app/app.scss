@@ -1,7 +1,8 @@
 
 @import '../assets/styles/style';
 
-.btn{
+.btn,
+button.btn{
 	&:focus,
 	&:hover{
 		outline: none;
@@ -108,5 +109,14 @@ div{
 	}
 	&.btn-lg{
 		padding: 0.5rem 1rem
+	}
+}
+
+.d-flex{
+	&.space-around{
+		justify-content: space-around;
+	}
+	&.flex-wrap{
+		flex-wrap: wrap;
 	}
 }
