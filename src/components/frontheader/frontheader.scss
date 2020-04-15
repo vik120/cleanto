@@ -1,3 +1,13 @@
-.frontheader {
+@import '../../assets/styles/style';
 
+.navbar{
+	.navbar-nav{
+		.nav-item{
+			.nav-link{
+				&.router-link-exact-active{
+					color: var(--white);
+				}
+			}
+		}
+	}
 }
