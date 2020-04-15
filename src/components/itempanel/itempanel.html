@@ -10,7 +10,7 @@
     	 	</div>
     	 	<div class="panel-content">
     	 		<h6 class="service-name">{{itemcontent.name}}</h6>
-    	 		<p class="service-price"> Price: {{ itemcontent.price }}</p>
+    	 		<p class="service-price" v-getinfo="'serviceprice'"> Price: {{ itemcontent.price | toUSD }}</p>
     	 	</div>
     	</label>
     	<div class="pane-action" v-if="itemcontent.haveQuanity && extraservice">
