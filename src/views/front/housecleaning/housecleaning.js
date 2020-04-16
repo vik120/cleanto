@@ -1,4 +1,7 @@
-import ItemPanel from '../../../components/itempanel/index'
+import ItemPanel from '../../../components/itempanel/index';
+import { bus } from '../../../main';
+import $ from 'jquery';
+
 export default {
   name: 'housecleaning',
   components: {
@@ -31,16 +34,22 @@ export default {
           price: 5.00,
           haveQuanity: false
         } 
-      ]
+      ],
+      getServiceInfo: {},
     }
   },
   computed: {
 
   },
   mounted () {
-
+    bus.$emit('servicename', 'House Cleaning')
   },
   methods: {
+    getBedVal: function(){
+      var serviceName = $(this).data(servicename);
+      this.getServiceInfo['bedroom'] = this.bedroom;
 
+      console.log(this.serviceName);
+    }
   }
 }

@@ -13,7 +13,9 @@ export default {
       state: '',
       appointmentAddress: '',
       messageClass: '',
-      phone: ''
+      phone: '',
+      fname: '',
+      lname: ''
     }
   },
   computed: {

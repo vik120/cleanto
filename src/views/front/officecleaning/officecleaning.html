@@ -1,9 +1,9 @@
-<section class="carpenter">
+<section class="officecleaningr">
 	<md-tabs class="mb-3" md-theme="white-card">
-      <md-tab v-on:click="carpenterservicetype = 'property'" id="tab-home" md-label="Property Based"></md-tab>
-      <md-tab v-on:click="carpenterservicetype = 'area'" id="tab-pages" md-label="Area Based (ft.)"></md-tab> 
+      <md-tab v-on:click="officeservice = 'property'" id="tab-home" md-label="Property Based"></md-tab>
+      <md-tab v-on:click="officeservice = 'area'" id="tab-pages" md-label="Area Based (ft.)"></md-tab> 
     </md-tabs>
-    <div  v-if="carpenterservicetype == 'property'">
+    <div  v-if="officeservice == 'property'">
 	   	<md-card class="md-primary mb-3" md-theme="white-card">
 	    
 	      <md-card-content>
@@ -11,8 +11,8 @@
 	         	<div class="col-sm-6">
 	         		<md-field>
 				      <md-icon>business</md-icon>
-				      <label for="buildwall">Build walls</label>
-				       <md-select v-model="buildwall" name="buildwall" id="buildwall" md-dense>
+				      <label for="deskcleaning">Swiping With Desk Cleaning</label>
+				       <md-select v-model="deskcleaning" name="deskcleaning" id="deskcleaning">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -28,8 +28,8 @@
 	         	<div class="col-sm-6">
 	         		<md-field>
 				      <md-icon>view_quilt</md-icon>
-				      <label for="builddoorways">Build doorways</label>
-				       <md-select v-model="builddoorways" name="builddoorways" id="builddoorways" md-dense>
+				      <label for="windowclean">Doors And Window Cleaning</label>
+				       <md-select v-model="windowclean" name="windowclean" id="windowclean">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -41,23 +41,7 @@
 			          </md-select>
 				    </md-field>
 	         	</div>
-
-	         	<div class="col-sm-6">
-	         		<md-field>
-				      <md-icon>developer_board</md-icon>
-				      <label for="buildwindows">Build windows</label>
-				       <md-select v-model="buildwindows" name="buildwindows" id="buildwindows" md-dense>
-			            <md-option value="1">1</md-option>
-			            <md-option value="2">2</md-option>
-			            <md-option value="3">3</md-option>
-			            <md-option value="4">4</md-option>
-
-			            <md-option value="5">5</md-option>
-			            <md-option value="6">6</md-option> 
-			            
-			          </md-select>
-				    </md-field>
-	         	</div>
+ 
 	         </div>
 	      </md-card-content>
 
@@ -65,7 +49,7 @@
 
 	</div>
 
-    <md-card class="md-primary mb-3" md-theme="white-card" v-if="carpenterservicetype == 'area'">
+    <md-card class="md-primary mb-3" md-theme="white-card" v-if="officeservice == 'area'">
     	<md-card-header>
     		<div class="md-title">Remodeling or enhancing existing structures </div>
     	</md-card-header>
@@ -73,7 +57,7 @@
 			<md-field>
 				<md-icon>aspect_ratio</md-icon>
 				<label>Area of Cleaning</label>
-				<md-input v-model="cleaningarea"></md-input>
+				<md-input v-model="officearea"></md-input>
 				<span class="md-suffix">sq. ft.</span>
 			</md-field>
 		</md-card-content>
@@ -82,6 +66,5 @@
   	<h5 class="mt-4 mb-3" v-if="extraService">Extra Services</h5>
 
 	<item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" /> 
-
 </section>
 

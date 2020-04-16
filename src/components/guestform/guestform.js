@@ -11,7 +11,9 @@ export default {
       city: '',
       state: '',
       appointmentAddress: '',
-      messageClass: ''
+      messageClass: '',
+      fname: '',
+      lname: ''
     }
   },
   computed: {

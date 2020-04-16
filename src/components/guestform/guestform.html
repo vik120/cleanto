@@ -6,7 +6,21 @@
     <md-card-content>
       <div class="row">
         <div class="col-sm-6">
+          <md-field :class="messageClass">
+            <md-icon>face</md-icon>
+            <label>First Name</label>
+            <md-input v-model="fname" required></md-input> 
+          </md-field>
+        </div>
 
+        <div class="col-sm-6">
+          <md-field :class="messageClass">
+            <md-icon>face</md-icon>
+            <label>Last Name</label>
+            <md-input v-model="lname" required></md-input> 
+          </md-field>
+        </div>
+        <div class="col-sm-6">
           <md-field :class="messageClass">
             <md-icon>email</md-icon>
             <label>Preferred Email</label>

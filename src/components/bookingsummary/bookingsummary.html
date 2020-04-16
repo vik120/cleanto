@@ -1,4 +1,5 @@
 <section class="bookingsummary">
+  
   <md-card class="md-primary" md-theme="white-card">
       <md-card-header>
         <md-card-header-text>
@@ -7,15 +8,18 @@
       </md-card-header>
 
       <md-card-content>
-      	<div class="mb-2">
+      	<div class="mb-2" v-if="serviceName">
       		<md-icon title="service" class="mr-2">select_all</md-icon> 
-      		<strong>House Clean</strong>
+      		<strong>{{serviceName}}</strong>
       	</div>
-      	<div class="mb-2">
-      		<md-icon class="mr-2">calendar_today</md-icon> <span>26-Apr-2020 @ 03:30 PM</span>
+      	<div class="mb-2" v-if="serviceDate.selectedDate">
+      		<md-icon class="mr-2">calendar_today</md-icon> <span>{{ serviceDate.selectedDate }}</span>
       	</div>
-      	<div class="mb-2">
-      		<md-icon class="mr-2">slow_motion_video</md-icon> <span>Once</span>
+        <div class="mb-2" v-if="serviceTime">
+          <md-icon class="mr-2">calendar_today</md-icon> <span>{{ serviceTime }}</span>
+        </div>
+      	<div class="mb-2" v-if="duration">
+      		<md-icon class="mr-2">slow_motion_video</md-icon> <span>{{ duration }}</span>
       	</div>
       	<div class="mb-2">
       		<md-icon class="mr-2">hourglass_empty</md-icon> <span>3 hours 30 Minutes</span>

@@ -2,30 +2,29 @@ import ItemPanel from '../../../components/itempanel/index'
 import { bus } from '../../../main'
 
 export default {
-  name: 'carpenter',
+  name: 'officecleaningr',
   components: {
     'item-panel': ItemPanel
   },
   props: [],
   data () {
     return {
-      carpenterservicetype: 'property',
-      buildwindows: '',
-      builddoorways: '',
-      buildwall: '',
-      cleaningarea: '',
+      officeservice: 'property',
+      officearea: '',
+      windowclean: '',
+      deskcleaning: '',
       extraService: [
         {
           id: 0,
-          image: 'damage-floor.jpg',
-          name: 'Damaged Flooring',
-          price: 10.00,
+          image: 'parking.jpg',
+          name: 'Parking Cleaning',
+          price: 20.00,
           haveQuanity: false
         },
         {
           id: 1,
-          image: 'door-jams.jpg',
-          name: 'Door Jams',
+          image: 'storeroom.jpg',
+          name: 'Storeroom Cleaning',
           price: 10.00,
           haveQuanity: true
         }
@@ -35,8 +34,8 @@ export default {
   computed: {
 
   },
-  mounted () { 
-     bus.$emit('servicename', 'Carpenter Service')
+  mounted () {
+    bus.$emit('servicename', 'Office Cleaning')
   },
   methods: {
 

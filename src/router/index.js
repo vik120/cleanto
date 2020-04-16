@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/front/home/index'
 import HouseCleaning from '../views/front/housecleaning/index'
 import Plumbing from '../views/front/plumbing/index'
+import Carpenter from '../views/front/carpenter/index'
+import OfficeClean from '../views/front/officecleaning/index'
 
 Vue.use(VueRouter)
 
@@ -19,6 +21,14 @@ Vue.use(VueRouter)
       {
         path: '/plumbing', 
         component: Plumbing
+      },
+      {
+        path: '/carpentery', 
+        component: Carpenter
+      },
+      {
+        path: '/office-cleaning', 
+        component: OfficeClean
       }
     ]
   }

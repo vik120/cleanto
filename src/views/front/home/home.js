@@ -5,27 +5,30 @@ import RegisterForm from '../../../components/registerform/index'
 import GuestForm from '../../../components/guestform/index'
 import CardPayment from '../../../components/cardpayment/index'
 import BookingSummary from '../../../components/bookingsummary/index'
+import { ValidationProvider, ValidationObserver } from 'vee-validate';
 
 export default {
   name: 'home',
   components: {
     'front-header': FrontHeader,
     VueMaterialDateTimePicker,
-    'login': LoginForm,
-    'register': RegisterForm,
-    'guest': GuestForm,
+    'existing': LoginForm,
+    'newuser': RegisterForm,
+    'guestuser': GuestForm,
     'card-info': CardPayment,
-    'book-summary': BookingSummary
+    'book-summary': BookingSummary,
+    ValidationProvider,
+    ValidationObserver
   },
   props: [],
   data () {
     return {
       zipcode: '',
-      serviceduration: 'Monthly',
+      serviceduration: '',
       datacalendar: '',
       calendarData: {},
       time: '',
-      userinfo: 'existing',
+      userinfo: '',
       paymentmethod: '',
       terms: '',
       promocode: ''

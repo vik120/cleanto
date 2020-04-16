@@ -3,24 +3,30 @@
 	<div class="midbody mt-4">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
-					<md-card class="md-primary mb-3" md-theme="white-card">
-				      <md-card-header>
-				        <div class="md-title">Where would you like us to provide service?</div>
-				      </md-card-header>
-				      <md-card-content>
-				      	<md-field>
-				      		<md-icon>home</md-icon>
-							<label>Zip or Postal Code</label>
-							<md-input v-model="zipcode"></md-input>
-					    </md-field>
-				      </md-card-content>
-				    </md-card> 
+				<div class="col-md-8"> 
+
+						<md-card class="md-primary mb-3" md-theme="white-card">
+					      <md-card-header>
+					        <div class="md-title">Where would you like us to provide service?</div>
+					      </md-card-header>
+					      <md-card-content> 
+						      	<md-field :class="{'md-invalid': errors.has('zipcode') }" class="md-has-value">
+
+						      		<md-icon>home</md-icon>
+									<label for="zipcode">Zip or Postal Code</label>
+									<!-- <md-input type="text"   rules="required" data-v-validate="'numeric'"></md-input> -->
+									<input type="text"  v-validate="'required|max:6/numeric'" class="md-input" name="zipcode" v-model="zipcode" id="zipcode" />
+									<span class="md-error" v-if="errors.has('zipcode')">Please put correct zip code</span>
+							    
+							    </md-field>
+						     
+					      </md-card-content>
+					    </md-card>  
 
 				    <h5 class="mb-3">Choose Services</h5>
 
 				    <div class="row">
-				      	<div class="col-md-3 mb-3 col-sm-6 text-center">
+				      	<div class="col-md-3 mb-3 col-sm-6 text-center servicebox">
 		      	 		 	<router-link to="/house-cleaning">
 		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
 							      <md-card-media>
@@ -33,7 +39,7 @@
 							    </md-card>
 		      	 		 	</router-link>
 			      	 	</div>
-			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center">
+			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center servicebox">
 		      	 		 	<router-link to="/plumbing">
 		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
 							      <md-card-media>
@@ -48,8 +54,8 @@
 							    </md-card>
 		      	 		 	</router-link>
 			      	 	</div>
-			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center">
-		      	 		 	<router-link to="/">
+			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center servicebox">
+		      	 		 	<router-link to="/carpentery">
 		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
 							      <md-card-media>
 							        <img src="../../../assets/images/carpentry.jpg" alt="People">
@@ -63,8 +69,8 @@
 							    </md-card>
 		      	 		 	</router-link>
 			      	 	</div>
-			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center">
-		      	 		 	<router-link to="/">
+			      	 	<div class="col-md-3 mb-3 col-sm-6 text-center servicebox">
+		      	 		 	<router-link to="/office-cleaning">
 		      	 		 		<md-card class="md-primary block-services" md-theme="white-card">
 							      <md-card-media>
 							        <img src="../../../assets/images/office-clean.jpg" alt="People">
@@ -72,9 +78,7 @@
 
 							      <md-card-header>
 							        <div class="md-title">Office Clean</div>
-							      </md-card-header>
-
-							     
+							      </md-card-header>							     
 							    </md-card>
 		      	 		 	</router-link>
 			      	 	</div>
@@ -111,10 +115,10 @@
 								v-model="calendarData"
 								:sundayStart="true"
 								:date-format="'dd/mm/yyyy'"
-								:is-date-range='true'
+								:is-date-range='false'
 								:is-date-picker="true"
-								:is-multiple='true'
-								:is-separately='true'
+								:is-multiple='false'
+								:is-separately='false' 
 								:calendars-count='2'
 							></FunctionalCalendar>
 				    	</div>
@@ -160,11 +164,13 @@
 				    		</div> 
 				    	</div>	
 				      </md-card-content>
-				    </md-card>
+				    </md-card> 
 
-				    <login v-if="userinfo == 'existing'" />
+				    <component :is="userinfo"></component>
+
+				   <!--  <login v-if="userinfo == 'existing'" />
 				    <register v-if="userinfo == 'newuser'" />
-				    <guest v-if="userinfo == 'guestuser'" />
+				    <guest v-if="userinfo == 'guestuser'" /> -->
 
 
 				    <md-card class="md-primary mb-3" md-theme="white-card">
@@ -210,7 +216,10 @@
 				      
 				</div>
 				<div class="col-md-4">
-					<book-summary />
+
+					{{ calendarData.selectedDate }}
+
+					<book-summary v-bind:duration="serviceduration" :serviceTime="time" v-bind:serviceDate="calendarData"></book-summary>
 				</div>
 			</div>
 		</div>

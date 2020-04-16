@@ -11,13 +11,15 @@ button.btn{
 }
 
 
-.md-field{
+.md-theme-white-card.md-field{
 	&:after{
 		background: var(--border-color);
+		height: 1px;
 	}
 
 	&:before{
 		background: var(--active-color);
+		height: 1px;
 	}
 
 	&.md-has-textarea{
@@ -118,5 +120,62 @@ div{
 	}
 	&.flex-wrap{
 		flex-wrap: wrap;
+	}
+}
+
+.md-select{
+	padding-left: 10px;
+}
+
+.md-list{
+	&.md-theme-demo-light,
+	&.md-theme-white-card {
+	    background-color: #fff;
+	    background-color: var(--white);
+	    color: rgba(0,0,0,.87);
+	    color: var(--md-theme-demo-light-text-primary-on-background,rgba(0,0,0,.87));
+
+	    .md-list-item-container{
+	    	font-size: 16px;
+
+	    	&:hover{
+	    		background-color: rgba(0,0,0,.12); 
+			    color: rgba(0,0,0,.87); 
+	    	}
+
+	    	.md-list-item-text{
+	    		font-size: 16px;
+	    		overflow: hidden;
+    			line-height: 1.25em;
+	    	}
+	    }
+	}
+}
+
+.md-tabs{
+	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+	&.md-theme-white-card{
+		background: var(--white);
+
+		.md-tab-nav-button{
+			&.md-active{
+				.md-button-content{
+					color: var(--active-color);
+				}
+			}
+		}
+
+		.md-tabs-indicator{
+			background: var(--active-color);
+		}
+	}
+}
+
+.md-field{
+	&.md-invalid{
+		.md-error{
+			color: var(--red);
+		}
 	}
 }

@@ -1,10 +1,16 @@
+import { bus } from '../../main'
+
 export default {
   name: 'bookingsummary',
   components: {},
-  props: [],
+  props: {
+    serviceTime: String,
+    serviceDate: Object,
+    duration: String
+  },
   data () {
     return {
-
+      serviceName: ''
     }
   },
   computed: {
@@ -15,5 +21,16 @@ export default {
   },
   methods: {
 
+  },
+  filters: {
+    toUTC: function(val){
+    }
+  },
+  created(){
+
+    bus.$on('servicename', (data) => {
+        this.serviceName = data;
+    });
+    
   }
 }

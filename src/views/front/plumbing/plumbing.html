@@ -1,23 +1,109 @@
 <section class="plumbing">
-  	<md-tabs md-sync-route>
-      <md-tab id="tab-home" md-label="Home" to="/components/tabs" exact>
-        Home Tab
-      </md-tab>
-
-      <md-tab id="tab-pages" md-label="Pages" to="/components/tabs/pages">
-        Pages tab
-        <p>Unde provident nemo reiciendis officia, possimus repellendus. Facere dignissimos dicta quis rem. Aliquam aspernatur dolor atque nisi id deserunt laudantium quam repellat.</p>
-      </md-tab>
-
-      <md-tab id="tab-posts" md-label="Posts" to="/components/tabs/posts">
-        Posts tab
-        <p>Qui, voluptas repellat impedit ducimus earum at ad architecto consectetur perferendis aspernatur iste amet ex tempora animi, illum tenetur quae assumenda iusto.</p>
-      </md-tab>
-
-      <md-tab id="tab-favorites" md-label="Favorites" to="/components/tabs/favorites">
-        Favorites tab
-        <p>Maiores, dolorum. Beatae, optio tempore fuga odit aperiam velit, consequuntur magni inventore sapiente alias sequi odio qui harum dolorem sunt quasi corporis.</p>
-      </md-tab>
+  	<md-tabs class="mb-3" md-theme="white-card">
+      <md-tab v-on:click="plumbingservicetype = 'residential'" id="tab-home" md-label="Residential Services"></md-tab>
+      <md-tab v-on:click="plumbingservicetype = 'commercial'" id="tab-pages" md-label="Commercial Services"></md-tab> 
     </md-tabs>
+
+   	<md-card class="md-primary mb-3" md-theme="white-card" v-if="plumbingservicetype == 'residential'">
+    
+      <md-card-content>
+         <div class="row">
+         	<div class="col-sm-6">
+         		<md-field>
+			      <md-icon>call_split</md-icon>
+			      <label for="waterline">Water Line Repairs</label>
+			       <md-select v-model="waterline" name="waterline" id="waterline" md-dense>
+		            <md-option value="1">1</md-option>
+		            <md-option value="2">2</md-option>
+		            <md-option value="3">3</md-option>
+		            <md-option value="4">4</md-option>
+
+		            <md-option value="5">5</md-option>
+		            <md-option value="6">6</md-option>
+		            <md-option value="7">7</md-option>
+		            <md-option value="8">8</md-option>
+		            <md-option value="9">9</md-option>
+		            <md-option value="10">10</md-option>
+		            
+		          </md-select>
+			    </md-field>
+         	</div>
+
+         	<div class="col-sm-6">
+         		<md-field>
+			      <md-icon>rounded_corner</md-icon>
+			      <label for="leakpipe">Frozen/Leaking Pipes</label>
+			       <md-select v-model="leakpipe" name="leakpipe" id="leakpipe" md-dense>
+		            <md-option value="1">1</md-option>
+		            <md-option value="2">2</md-option>
+		            <md-option value="3">3</md-option>
+		            <md-option value="4">4</md-option>
+
+		            <md-option value="5">5</md-option>
+		            <md-option value="6">6</md-option>
+		            <md-option value="7">7</md-option>
+		            <md-option value="8">8</md-option>
+		            <md-option value="9">9</md-option>
+		            <md-option value="10">10</md-option>
+		            
+		          </md-select>
+			    </md-field>
+         	</div>
+
+         </div>
+      </md-card-content>
+
+    </md-card>
+
+    <md-card class="md-primary mb-3" md-theme="white-card" v-if="plumbingservicetype == 'commercial'">
+    
+      <md-card-content>
+         <div class="row">
+         	<div class="col-sm-6">
+         		<md-field>
+			      <md-icon>gps_not_fixed</md-icon>
+			      <label for="waterline">Clogged Drains</label>
+			       <md-select v-model="waterline" name="waterline" id="waterline" md-dense>
+		            <md-option value="1">1</md-option>
+		            <md-option value="2">2</md-option>
+		            <md-option value="3">3</md-option>
+		            <md-option value="4">4</md-option>
+
+		            <md-option value="5">5</md-option>
+		            <md-option value="6">6</md-option>
+		            <md-option value="7">7</md-option>
+		            <md-option value="8">8</md-option>
+		            <md-option value="9">9</md-option>
+		            <md-option value="10">10</md-option>
+		            
+		          </md-select>
+			    </md-field>
+         	</div>
+
+         	<div class="col-sm-6">
+         		<md-field>
+			      <md-icon>hot_tub</md-icon>
+			      <label for="waterheater">Water Heater Repairs</label>
+			       <md-select v-model="waterheater" name="waterheater" id="waterheater" md-dense>
+		            <md-option value="1">1</md-option>
+		            <md-option value="2">2</md-option>
+		            <md-option value="3">3</md-option>
+		            <md-option value="4">4</md-option>
+
+		            <md-option value="5">5</md-option>
+		            <md-option value="6">6</md-option>
+		            <md-option value="7">7</md-option>
+		            <md-option value="8">8</md-option>
+		            <md-option value="9">9</md-option>
+		            <md-option value="10">10</md-option>
+		            
+		          </md-select>
+			    </md-field>
+         	</div>
+
+         </div>
+      </md-card-content>
+  </md-card>
+
 </section>
 
