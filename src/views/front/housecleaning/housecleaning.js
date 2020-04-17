@@ -45,11 +45,8 @@ export default {
     bus.$emit('servicename', 'House Cleaning')
   },
   methods: {
-    getBedVal: function(){
-      var serviceName = $(this).data(servicename);
-      this.getServiceInfo['bedroom'] = this.bedroom;
-
-      console.log(this.serviceName);
+    getBedVal: function(){ 
+      this.getServiceInfo['bedroom'] = this.bedroom; 
     }
   }
 }
