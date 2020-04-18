@@ -9,12 +9,11 @@
 	        		<md-field>
 	        			<md-icon>king_bed</md-icon>
 						<label for="country">Bedroom(s)</label>
-						<md-select v-model="bedroom" name="bedroom" id="bedroom" @md-selected="getBedVal" data-servicename="bedroom">
+						<md-select v-model="bedroom" name="bedroom" id="bedroom" @md-selected="getBedVal('bedroom', 10, bedroom)">
 							<md-option value="1">1</md-option>
 							<md-option value="2">2</md-option>
 							<md-option value="3">3</md-option>
 							<md-option value="4">4</md-option>
-
 							<md-option value="5">5</md-option>
 							<md-option value="6">6</md-option>
 							<md-option value="7">7</md-option>
@@ -30,12 +29,11 @@
 	        		<md-field>
 						<md-icon>bathtub</md-icon>
 						<label for="country">Bathroom(s)</label>
-						<md-select v-model="bathroom" name="bathroom" id="bathroom" data-servicename="bedroom">
+						<md-select v-model="bathroom" name="bathroom" @md-selected="getBathVal('bathroom', 10)" id="bathroom">
 						<md-option value="1">1</md-option>
 						<md-option value="2">2</md-option>
 						<md-option value="3">3</md-option>
 						<md-option value="4">4</md-option>
-
 						<md-option value="5">5</md-option>
 						<md-option value="6">6</md-option>
 						<md-option value="7">7</md-option>
@@ -53,7 +51,7 @@
 
     <h5 class="mt-4 mb-3">Extra Services</h5>
 
-    <div class="">
+    <div class="extra-service">
     	 <item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" /> 
     </div>
 </section>

@@ -8,7 +8,8 @@ export default {
   data () {
     return {
       counter: 1,
-      extraservice: false
+      extraservice: false,
+      serviceObj: {}
     }
   },
   computed: {
@@ -35,8 +36,12 @@ export default {
       }
     },
 
-    created() {
-
+    getServiceInfo(val, price, qty = 1){
+      console.log(val, price, qty);
     }
+
+  },
+  created() {
+
   }
 }

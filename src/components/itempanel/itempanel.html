@@ -1,10 +1,9 @@
 <div class="panel-wrap">
 	 <div class="panel text-center">
 	 	 
-	 	<input type="checkbox" v-model="extraservice" :id="'extraservice'+itemcontent.id">
+	 	<input type="checkbox" v-model="extraservice" :id="'extraservice'+itemcontent.id" v-on:change="getServiceInfo(itemcontent.name, itemcontent.price, counter)">
 	 	<label :for="'extraservice'+itemcontent.id">
-    	 	<div class="panel-media">
-    	 		<!-- <img :src="require(`@/assets/${itemcontent.image}`)" :alt="itemcontent.name" /> -->
+    	 	<div class="panel-media"> 
 
     	 		<img :src="require(`@/assets/images/${itemcontent.image}`)" :alt="itemcontent.name" />
     	 	</div>
@@ -27,8 +26,6 @@
 			    </button>
 			  </div>
 			</div>
- 
-			
     	</div>
 	 </div>
 </div>

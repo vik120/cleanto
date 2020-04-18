@@ -25,45 +25,29 @@
       		<md-icon class="mr-2">hourglass_empty</md-icon> <span>3 hours 30 Minutes</span>
       	</div>
       	<h5 class="mb-3 pt-2">Cart Items</h5>
+
+      <div v-if="servicelist">
+
       	<div class="cart-items-group mb-3">
       		<div class="cart-items-list mb-2">
       			<div class="row">
-      				<div class="col-6 text-left servicename"><strong>Service</strong></div>
-      				<div class="col-2 text-center qty"><strong>QTY</strong></div>
+      				<div class="col-5 text-left servicename"><strong>Service</strong></div>
+      				<div class="col-3 text-center qty"><strong>QTY</strong></div>
       				<div class="col-4 text-right"><strong>Price</strong></div>
       			</div>
       		</div>
 
-      		<div class="cart-items-list mb-2">
-	      		<md-button class="md-icon-button md-accent icon">
+      		<div class="cart-items-list mb-2" v-for="(items, index) in servicelist ">
+	      	<md-button class="md-icon-button md-accent icon">
 			    	<md-icon>close</md-icon>
 			    </md-button>
       			<div class="row">
-      				<div class="col-6 text-left servicename"><span>Fridge Cleaning</span></div>
-      				<div class="col-2 text-center">1</div>
-      				<div class="col-4 text-right">5.00</div>
+      				<div class="col-5 text-left servicename text-capitalize"><span>{{items.servicename}}</span></div>
+      				<div class="col-3 text-center">{{ items.serviceqty }}</div>
+      				<div class="col-4 text-right">{{items.serviceprice}}</div>
       			</div>
       		</div>
-      		<div class="cart-items-list mb-2">
-	      		<md-button class="md-icon-button md-accent icon">
-			    	<md-icon>close</md-icon>
-			    </md-button>
-      			<div class="row">
-      				<div class="col-6 text-left servicename"><span>Fridge Cleaning</span></div>
-      				<div class="col-2 text-center">1</div>
-      				<div class="col-4 text-right">5.00</div>
-      			</div>
-      		</div>
-      		<div class="cart-items-list mb-2">
-	      		<md-button class="md-icon-button md-accent icon">
-			    	<md-icon>close</md-icon>
-			    </md-button>
-      			<div class="row">
-      				<div class="col-6 text-left servicename"><span>Fridge Cleaning</span></div>
-      				<div class="col-2 text-center">1</div>
-      				<div class="col-4 text-right">5.00</div>
-      			</div>
-      		</div>
+      		  
 
       		<div class="cart-items-list mb-2 mt-4">
 	      		<div class="row">
@@ -92,9 +76,10 @@
   				<div class="col-6 text-right">38.98</div>
   			</div>
       	</b-alert>
-      	<div><md-icon title="service" class="mr-2">shopping_cart</md-icon> Cart is empty</div>
+      </div>
+      <div v-else><md-icon title="service" class="mr-2">shopping_cart</md-icon> Cart is empty</div>
       </md-card-content>
-      <md-card-header>
+      <md-card-header v-if="servicelist">
         <md-card-header-text>
           <div class="md-title">
           	<div class="row">

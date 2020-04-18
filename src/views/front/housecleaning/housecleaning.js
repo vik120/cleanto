@@ -35,18 +35,65 @@ export default {
           haveQuanity: false
         } 
       ],
-      getServiceInfo: {},
+      getServiceInfo: []
     }
   },
   computed: {
-
+    
   },
   mounted () {
     bus.$emit('servicename', 'House Cleaning')
   },
   methods: {
-    getBedVal: function(){ 
-      this.getServiceInfo['bedroom'] = this.bedroom; 
+
+    ServiceInfoFun: function(obj){
+
+      var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
+
+      if (!existingIds.includes(obj.servicename)) {
+
+        this.getServiceInfo.push(obj);
+         bus.$emit('extraservice', this.getServiceInfo);
+
+          debugger;
+
+      } else {
+        
+        this.getServiceInfo.forEach((element, index) => {
+
+          if (element.servicename === obj.servicename) {
+            this.getServiceInfo[index] = obj;
+             bus.$emit('extraservice', this.getServiceInfo);
+             debugger;
+          };
+
+        });
+
+      };
+
+     
+    },
+
+
+    getBedVal: function(name, price, qty){ 
+
+      var obj = {
+        servicename: name,
+        serviceprice: price * this.bedroom,
+        serviceqty : this.bedroom
+      }
+     
+       this.ServiceInfoFun(obj);
+    },
+
+    getBathVal: function(name, price, qty){ 
+      var obj = {
+        servicename: name,
+        serviceprice: price * this.bathroom,
+        serviceqty : this.bathroom
+      }
+
+      this.ServiceInfoFun(obj);
     }
   }
 }
