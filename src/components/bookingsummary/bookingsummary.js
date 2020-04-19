@@ -6,13 +6,12 @@ export default {
   props: {
     serviceTime: String,
     serviceDate: Object,
-    duration: String,
-    servicelist: Array
+    duration: String, 
   },
   data () {
     return {
       serviceName: '',
-
+      serviceInfo: []
     }
   },
   computed: {
@@ -31,6 +30,7 @@ export default {
   },
 
   watch: {
+
   },
   created(){
 
@@ -38,7 +38,17 @@ export default {
         this.serviceName = data;
     });
 
-   
-
+    bus.$on('extraservice', (data) => {
+        this.serviceInfo = data;
+        console.log(this.serviceInfo);
+    });
   },
+
+  updated() {
+     
+  },
+
+  watch:{
+     
+  }
 }

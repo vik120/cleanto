@@ -6,6 +6,7 @@ import GuestForm from '../../../components/guestform/index'
 import CardPayment from '../../../components/cardpayment/index'
 import BookingSummary from '../../../components/bookingsummary/index'
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import Vue from 'vue';
 
 import { bus } from '../../../main';
 
@@ -44,10 +45,10 @@ export default {
   },
   mounted () {
     bus.$on('extraservice', (data) => {
-        console.log(data);
-         return this.extraService = data;
+        
+       return this.extraService = data;
 
-      })
+    })
   },
   methods: {
     dateClass(ymd, date) {
@@ -57,7 +58,7 @@ export default {
 
     onListUpdated: function(item){
       this.extraService = item;
-      console.log(item)
+      
     },
 
   },

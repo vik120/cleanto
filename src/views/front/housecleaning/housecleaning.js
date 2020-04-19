@@ -2,6 +2,7 @@ import ItemPanel from '../../../components/itempanel/index';
 import { bus } from '../../../main';
 import $ from 'jquery';
 
+
 export default {
   name: 'housecleaning',
   components: {
@@ -52,31 +53,54 @@ export default {
 
       if (!existingIds.includes(obj.servicename)) {
 
-        this.getServiceInfo.push(obj);
-         bus.$emit('extraservice', this.getServiceInfo);
+       // $.merge(this.getServiceInfo, obj);
 
-          debugger;
-
+       this.getServiceInfo.push(obj);
+       
+        bus.$emit('extraservice', this.getServiceInfo);
+         
+      //   this.$store.dispatch('serviceListAction', this.getServiceInfo)
+ 
       } else {
         
         this.getServiceInfo.forEach((element, index) => {
 
           if (element.servicename === obj.servicename) {
+              
             this.getServiceInfo[index] = obj;
-             bus.$emit('extraservice', this.getServiceInfo);
-             debugger;
+
+            //   this.$store.dispatch('serviceListAction', this.getServiceInfo); 
+
+            bus.$emit('extraservice', this.getServiceInfo);
+ 
           };
 
         });
 
       };
-
-     
+      
     },
 
+    mergeArray: function(arr){
+      var existingArry = this.getServiceInfo.map((arr) => arr.servicename);
 
-    getBedVal: function(name, price, qty){ 
+       if (!existingArry.includes(arr.servicename)) {
 
+        this.getServiceInfo.push(arr);
+        bus.$emit('extraservice', this.getServiceInfo);
+         
+      //   this.$store.dispatch('serviceListAction', this.getServiceInfo)
+ 
+      }else{
+        $.merge(this.getServiceInfo, arr)
+
+        bus.$emit('extraservice', this.getServiceInfo);
+      }
+
+
+    },
+
+    getBedVal: function(name, price){ 
       var obj = {
         servicename: name,
         serviceprice: price * this.bedroom,
@@ -86,7 +110,7 @@ export default {
        this.ServiceInfoFun(obj);
     },
 
-    getBathVal: function(name, price, qty){ 
+    getBathVal: function(name, price){ 
       var obj = {
         servicename: name,
         serviceprice: price * this.bathroom,
@@ -94,6 +118,10 @@ export default {
       }
 
       this.ServiceInfoFun(obj);
+    },
+
+    getExtraService: function(val){
+     this.mergeArray(val);  
     }
   }
 }

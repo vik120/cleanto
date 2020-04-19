@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default {
   name: 'itempanel',
   components: {},
@@ -9,14 +11,14 @@ export default {
     return {
       counter: 1,
       extraservice: false,
-      serviceObj: {}
+      serviceObj: {},
+      itemExtraServiceInfo: []
     }
   },
   computed: {
 
   },
   mounted () {
-
   },
   methods: {
     formatPrice(value) {
@@ -24,20 +26,31 @@ export default {
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
 
-    add(value){
+    add(value, name, price){
       if(this.counter < value){
         this.counter++;
+        this.sendExtraService( name, price, this.counter);
+
       }
     },
 
-    minus(value){
+    minus(value,  name, price){
       if(this.counter > value){
         this.counter--;
+        this.sendExtraService( name, price, this.counter);
       }
     },
 
-    getServiceInfo(val, price, qty = 1){
-      console.log(val, price, qty);
+    sendExtraService(val, price, qty = 1){
+      var obj = {
+        servicename: val,
+        serviceprice: price,
+        serviceqty : qty
+      } 
+
+       this.itemExtraServiceInfo.push(obj);
+      console.log(this.itemExtraServiceInfo);
+      this.$emit('sendExtraService', this.itemExtraServiceInfo);
     }
 
   },

@@ -10,6 +10,7 @@ import VeeValidate from 'vee-validate';
 import $ from 'jquery'  
 import { BootstrapVue, IconsPlugin, NavbarPlugin, FormInputPlugin, CardPlugin, CalendarPlugin, ModalPlugin, ButtonPlugin, TooltipPlugin, AlertPlugin } from 'bootstrap-vue'
 import FunctionalCalendar from 'vue-functional-calendar';
+ 
 
 Vue.config.productionTip = false 
 

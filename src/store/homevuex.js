@@ -6,14 +6,17 @@ export default {
 		serviceListState: {}
 	},
 	actions: {
-		serviceListAction(context){
-			context.commit('getServiceList')
+		serviceListAction(context, payload){
+			context.commit('setServiceList', payload)
 		}
 	},
 	mutations: {
-		getServiceList(state, value){
+		setServiceList(state, value){
+			console.log(value);
 			state.serviceListState = value;
 		}
 	},
-	getters: {}
+	getters: {
+		getServiceList: state => state.serviceListState
+	}
 }

@@ -216,15 +216,12 @@
 				      
 				</div>
 				<div class="col-md-4">
- 
-
-				 {{extraService}}
-
+ 					{{extraService}}
 					<book-summary 
 						v-bind:duration="serviceduration" 
 						:serviceTime="time" 
 						v-bind:serviceDate="calendarData" 
-						v-bind:servicelist = "extraService">
+					>
 					</book-summary>
 				</div>
 			</div>
