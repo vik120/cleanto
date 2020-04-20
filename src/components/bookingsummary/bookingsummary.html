@@ -1,5 +1,4 @@
 <section class="bookingsummary">
-  
   <md-card class="md-primary" md-theme="white-card">
       <md-card-header>
         <md-card-header-text>
@@ -8,46 +7,42 @@
       </md-card-header>
 
       <md-card-content>
-      	<div class="mb-2" v-if="serviceName">
+      	<div class="mb-2" v-if="serviceName"  title="Service Type">
       		<md-icon title="service" class="mr-2">select_all</md-icon> 
       		<strong>{{serviceName}}</strong>
       	</div>
-      	<div class="mb-2" v-if="serviceDate.selectedDate">
+      	<div class="mb-2" v-if="serviceDate.selectedDate" title="Start Date">
       		<md-icon class="mr-2">calendar_today</md-icon> <span>{{ serviceDate.selectedDate }}</span>
       	</div>
-        <div class="mb-2" v-if="serviceTime">
-          <md-icon class="mr-2">calendar_today</md-icon> <span>{{ serviceTime }}</span>
+        <div class="mb-2" v-if="serviceTime &&  serviceTime != undefined"  title="Start Time">
+          <md-icon class="mr-2">alarm</md-icon> <span>{{ serviceTime }}</span>
         </div>
-      	<div class="mb-2" v-if="duration">
+      	<div class="mb-2" v-if="duration"  title="Time Taken">
       		<md-icon class="mr-2">slow_motion_video</md-icon> <span>{{ duration }}</span>
       	</div>
-      	<div class="mb-2">
-      		<md-icon class="mr-2">hourglass_empty</md-icon> <span>3 hours 30 Minutes</span>
+      	<div class="mb-2" v-if="getTotalTime != 0">
+      		<md-icon class="mr-2">hourglass_empty</md-icon> <span>{{ getTotalTime | toHours }}</span>
       	</div>
       	<h5 class="mb-3 pt-2">Cart Items</h5>
 
-
-        {{serviceInfo}}
-      <div v-if="serviceInfo">
-        
-
+      <div v-if="subServiceInfo.length">
       	<div class="cart-items-group mb-3">
       		<div class="cart-items-list mb-2">
       			<div class="row">
-      				<div class="col-5 text-left servicename"><strong>Service</strong></div>
+      				<div class="col-6 text-left servicename"><strong>Service</strong></div>
       				<div class="col-3 text-center qty"><strong>QTY</strong></div>
-      				<div class="col-4 text-right"><strong>Price</strong></div>
+      				<div class="col-3 text-right"><strong>Price</strong></div>
       			</div>
       		</div>
 
-      		<div class="cart-items-list mb-2" v-for="(items, index) in serviceInfo ">
-	      	<md-button class="md-icon-button md-accent icon">
+      		<div class="cart-items-list mb-2" v-for="(items, index) in subServiceInfo" :counter="serialcounter">
+	      	<md-button class="md-icon-button md-accent icon" v-on:click="spliceItem(items.servicename)">
 			    	<md-icon>close</md-icon>
 			    </md-button>
       			<div class="row">
-      				<div class="col-5 text-left servicename text-capitalize"><span>{{items.servicename}}</span></div>
+      				<div class="col-6 text-left servicename text-capitalize"><span>{{items.servicename}}</span></div>
       				<div class="col-3 text-center">{{ items.serviceqty }}</div>
-      				<div class="col-4 text-right">{{items.serviceprice}}</div>
+      				<div class="col-3 text-right">{{items.serviceprice}}</div>
       			</div>
       		</div>
       		  
@@ -83,7 +78,7 @@
       <div v-else><md-icon title="service" class="mr-2">shopping_cart</md-icon> Cart is empty</div>
       </md-card-content>
 
-      <md-card-header v-if="serviceInfo">
+      <md-card-header v-if="subServiceInfo.length">
         <md-card-header-text>
           <div class="md-title">
           	<div class="row">
@@ -94,5 +89,6 @@
         </md-card-header-text>
       </md-card-header>
     </md-card>
+
 </section>
 

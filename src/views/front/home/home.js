@@ -35,7 +35,9 @@ export default {
       paymentmethod: '',
       terms: '',
       promocode: '',
-      extraService: {}
+      subService: {},
+      serialcounter: 0,
+      totalTime: 0
     }
   },
   computed: {
@@ -45,10 +47,18 @@ export default {
   },
   mounted () {
     bus.$on('extraservice', (data) => {
-        
-       return this.extraService = data;
+      
+      this.serialcounter++;
 
+      return this.subService = data;
+    }),
+
+    bus.$on('sendTotalTime', (data) => {
+      console.log(data)
+      return this.totalTime = data;
     })
+
+
   },
   methods: {
     dateClass(ymd, date) {
@@ -56,11 +66,20 @@ export default {
       // return day >= 10 && day <= 20 ? 'table-info' : ''
     },
 
-    onListUpdated: function(item){
-      this.extraService = item;
-      
-    },
+    selectedTime: function(){
+      if(this.calendarData.selectedHour != undefined || this.calendarData.selectedMinute != undefined){
+        return this.calendarData.selectedHour +' hours ' + this.calendarData.selectedMinute + ' minutes';
+      }else{
+        return undefined;
+      }
+    }
 
+  },
+
+  filters: {
+    getTime: function(obj){
+      return obj.selectedHour +'hours' + obj.selectedMinute + 'minutes';
+    }
   },
 
   created(){    

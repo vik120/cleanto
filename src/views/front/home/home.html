@@ -120,8 +120,12 @@
 								:is-multiple='false'
 								:is-separately='false' 
 								:calendars-count='2'
+								:with-time-picker='true'
 							></FunctionalCalendar>
 				    	</div>
+				    	<!-- {{ calendarData }}
+
+				    	{{calendarData | getTime}}
 
 				    	<md-card class="md-primary mb-3" md-theme="white-card">
 					      <md-card-content>
@@ -130,7 +134,7 @@
 					    		<VueMaterialDateTimePicker placeholder="Please select time" v-model="time" :is-time-only="true" />
 					    	</div>
 					      </md-card-content>
-					    </md-card> 
+					    </md-card>  -->
 				    </div>
 
 				     <md-card class="md-primary mb-3" md-theme="white-card">
@@ -215,12 +219,14 @@
 				    
 				      
 				</div>
-				<div class="col-md-4">
- 					{{extraService}}
+				<div class="col-md-4"> 
 					<book-summary 
 						v-bind:duration="serviceduration" 
-						:serviceTime="time" 
-						v-bind:serviceDate="calendarData" 
+						:serviceTime="selectedTime()" 
+						v-bind:serviceDate="calendarData"
+						:subServiceInfo="subService"
+						:counter="serialcounter"
+						:getTotalTime="totalTime"
 					>
 					</book-summary>
 				</div>

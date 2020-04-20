@@ -19,6 +19,7 @@ export default {
           image: 'fridge.jpg',
           name: 'Fridge Cleaning',
           price: 5.00,
+          time: 30,
           haveQuanity: true
         },
         {
@@ -26,6 +27,7 @@ export default {
           image: 'ovan.jpg',
           name: 'Oven Cleaning',
           price: 5.00,
+          time: 30,
           haveQuanity: false
         },
         {
@@ -33,10 +35,15 @@ export default {
           image: 'window.jpg',
           name: 'Inside Window Cleaning',
           price: 5.00,
+          time: 30,
           haveQuanity: false
         } 
       ],
-      getServiceInfo: []
+      getServiceInfo: [],
+      getServiceInfoAlpha: [],
+
+      getSpliceItem: '',
+      timeSlot: 0
     }
   },
   computed: {
@@ -48,29 +55,41 @@ export default {
   methods: {
 
     ServiceInfoFun: function(obj){
-
       var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
 
-      if (!existingIds.includes(obj.servicename)) {
+      let time = 0;
 
-       // $.merge(this.getServiceInfo, obj);
+      if (!existingIds.includes(obj.servicename)) { 
 
-       this.getServiceInfo.push(obj);
-       
+        this.getServiceInfoAlpha.push(obj);
+        this.getServiceInfo = this.getServiceInfoAlpha;
+        this.getServiceInfo.forEach((element, index) => {
+          time = time + element.serviceTime;
+        })
+
+        this.timeSlot = time;
+
+        bus.$emit('sendTotalTime', this.timeSlot);
         bus.$emit('extraservice', this.getServiceInfo);
-         
       //   this.$store.dispatch('serviceListAction', this.getServiceInfo)
- 
       } else {
         
-        this.getServiceInfo.forEach((element, index) => {
 
+        this.getServiceInfo.forEach((element, index) => {
           if (element.servicename === obj.servicename) {
               
             this.getServiceInfo[index] = obj;
 
-            //   this.$store.dispatch('serviceListAction', this.getServiceInfo); 
+            //   this.$store.dispatch('serviceListAction', this.getServiceInfo);
 
+             this.getServiceInfo.forEach((element, index) => {
+                time = time + element.serviceTime;
+               
+              })
+
+             this.timeSlot = time;
+
+             bus.$emit('sendTotalTime', this.timeSlot);
             bus.$emit('extraservice', this.getServiceInfo);
  
           };
@@ -78,50 +97,113 @@ export default {
         });
 
       };
-      
     },
 
-    mergeArray: function(arr){
-      var existingArry = this.getServiceInfo.map((arr) => arr.servicename);
+    mergeArray: function(obj){
 
-       if (!existingArry.includes(arr.servicename)) {
+      var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
+      let time = 0;
 
-        this.getServiceInfo.push(arr);
+      if (!existingIds.includes(obj.servicename)) {
+
+       this.getServiceInfo.push(obj);
+
+        this.getServiceInfo.forEach((element, index) => {
+          time = time + element.serviceTime;
+         
+        })
+
+        console.log(time);
+        
+        this.timeSlot = time;
+
+        bus.$emit('sendTotalTime', this.timeSlot);
         bus.$emit('extraservice', this.getServiceInfo);
          
-      //   this.$store.dispatch('serviceListAction', this.getServiceInfo)
+      } else {
  
-      }else{
-        $.merge(this.getServiceInfo, arr)
+         this.getServiceInfo.forEach((element, index) => {
 
-        bus.$emit('extraservice', this.getServiceInfo);
-      }
+          if (element.servicename === obj.servicename) {
+            this.getServiceInfo[index] = obj;
+            bus.$emit('extraservice', this.getServiceInfo);
+          };
+        
+          time = time + element.serviceTime;
+            
+          console.log(time);
+
+        });
+
+         this.timeSlot = time;
+         bus.$emit('sendTotalTime', this.timeSlot);
+
+      };
 
 
     },
 
-    getBedVal: function(name, price){ 
-      var obj = {
-        servicename: name,
-        serviceprice: price * this.bedroom,
-        serviceqty : this.bedroom
+    getBedVal: function(name, price, time){ 
+      if(this.bedroom != ''){
+        var obj = {
+          servicename: name,
+          serviceprice: price * this.bedroom,
+          serviceqty : this.bedroom,
+          serviceTime: time * this.bedroom
+        }
+       
+         this.ServiceInfoFun(obj);
       }
+    },
+
+    getBathVal: function(name, price, time){ 
      
-       this.ServiceInfoFun(obj);
-    },
-
-    getBathVal: function(name, price){ 
-      var obj = {
-        servicename: name,
-        serviceprice: price * this.bathroom,
-        serviceqty : this.bathroom
+      
+      if(this.bathroom != ''){
+        var obj = {
+          servicename: name,
+          serviceprice: price * this.bathroom,
+          serviceqty : this.bathroom,
+          serviceTime: time * this.bathroom
+        }
+       
+         this.ServiceInfoFun(obj);
       }
 
-      this.ServiceInfoFun(obj);
     },
 
-    getExtraService: function(val){
-     this.mergeArray(val);  
+    getExtraService: function(val){ 
+     this.mergeArray(val);
+    },
+
+    spliceFun: function(data){
+      let time = 0;
+      this.getServiceInfo.forEach((element, index) => {
+        if (element.servicename === data) {
+          this.getServiceInfo.splice(index, 1);
+          bus.$emit('extraservice', this.getServiceInfo);
+
+          if(data == 'bedroom'){
+            this.bedroom = '';
+          }else if(data == 'bathroom'){
+            this.bathroom = '';
+          }else{
+            this.getSpliceItem = data
+          }            
+        }; 
+        
+        time = this.timeSlot - element.serviceTime;       
+      });
+      this.timeSlot = time;
+      bus.$emit('sendTotalTime', this.timeSlot);
     }
+
+
+  },
+
+  created(){
+    bus.$on('splice', (data) => {
+      this.spliceFun(data);
+    })
   }
 }

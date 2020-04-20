@@ -1,7 +1,7 @@
 <div class="panel-wrap">
 	 <div class="panel text-center">
-	 	 
-	 	<input type="checkbox" v-model="extraservice" :id="'extraservice'+itemcontent.id" v-on:change="sendExtraService(itemcontent.name, itemcontent.price, counter)">
+
+	 	<input type="checkbox" v-model="extraservice" :id="'extraservice'+itemcontent.id" v-on:change="sendExtraService(itemcontent.name, itemcontent.price, counter, itemcontent.time)" :checked="(itemcontent.name != this.spliceItem) ? 'true' : 'false'" :value="(itemcontent.name != this.spliceItem) ? 'true' : 'false'">
 	 	<label :for="'extraservice'+itemcontent.id">
     	 	<div class="panel-media"> 
 
@@ -15,13 +15,13 @@
     	<div class="pane-action" v-if="itemcontent.haveQuanity && extraservice">
     		<div class="input-group mb-3">
 			  <div class="input-group-prepend">
-			    <button class="btn btn-default" type="button" v-on:click="minus(1, itemcontent.name, itemcontent.price)" >
+			    <button class="btn btn-default" type="button" v-on:click="minus(1, itemcontent.name, itemcontent.price, itemcontent.time)" >
 			    	<md-icon>remove_circle_outline </md-icon>
 			    </button>
 			  </div>
 			  <div class="form-control text-center">{{ counter }}</div>
 			  <div class="input-group-append">
-			    <button class="btn btn-default" v-model="counter" type="button" v-on:click="add(10, itemcontent.name, itemcontent.price)">
+			    <button class="btn btn-default" v-model="counter" type="button" v-on:click="add(10, itemcontent.name, itemcontent.price, itemcontent.time)">
 			    	<md-icon>add_circle_outline</md-icon>
 			    </button>
 			  </div>

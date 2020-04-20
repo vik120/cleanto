@@ -1,10 +1,12 @@
 import $ from 'jquery';
+import { bus } from '../../main.js';
 
 export default {
   name: 'itempanel',
   components: {},
   props: {
-    itemcontent: Object
+    itemcontent: Object,
+    
   },
 
   data () {
@@ -12,7 +14,8 @@ export default {
       counter: 1,
       extraservice: false,
       serviceObj: {},
-      itemExtraServiceInfo: []
+      itemExtraServiceInfo: [],
+      spliceItem: ''
     }
   },
   computed: {
@@ -26,35 +29,51 @@ export default {
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
 
-    add(value, name, price){
+    add(value, name, time, price){
       if(this.counter < value){
         this.counter++;
-        this.sendExtraService( name, price, this.counter);
+        this.sendExtraService( name, price, this.counter, time);
 
       }
     },
 
-    minus(value,  name, price){
+    minus(value,  name, time, price){
       if(this.counter > value){
         this.counter--;
-        this.sendExtraService( name, price, this.counter);
+        this.sendExtraService( name, price, this.counter, time);
       }
     },
 
-    sendExtraService(val, price, qty = 1){
-      var obj = {
-        servicename: val,
-        serviceprice: price,
-        serviceqty : qty
-      } 
+    sendExtraService(val, price, qty = 1, time){
+      
+      if(this.extraservice){
 
-       this.itemExtraServiceInfo.push(obj);
-      console.log(this.itemExtraServiceInfo);
-      this.$emit('sendExtraService', this.itemExtraServiceInfo);
+        var obj = {
+          servicename: val,
+          serviceprice: price * qty,
+          serviceqty : qty,
+          serviceTime: time * qty
+        }
+
+        this.itemExtraServiceInfo = obj;
+        this.$emit('sendExtraService', this.itemExtraServiceInfo);
+      
+      }
     }
 
   },
   created() {
+     bus.$on('splice', (data) => {
+        this.spliceItem = data;
 
+        if(this.itemcontent.name == data){
+          this.extraservice = false;
+
+          if(this.itemcontent.haveQuanity){ 
+            this.counter = 1;
+          }
+
+        }
+    })
   }
 }
