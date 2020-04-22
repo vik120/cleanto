@@ -12,7 +12,7 @@
          		<md-field>
 			      <md-icon>call_split</md-icon>
 			      <label for="waterline">Water Line Repairs</label>
-			       <md-select v-model="waterline" name="waterline" id="waterline" md-dense>
+			       <md-select v-model="waterline" name="waterline" id="waterline"  @md-selected="getwaterlineVal('waterline', 10, 30)">
 		            <md-option value="1">1</md-option>
 		            <md-option value="2">2</md-option>
 		            <md-option value="3">3</md-option>
@@ -33,7 +33,7 @@
          		<md-field>
 			      <md-icon>rounded_corner</md-icon>
 			      <label for="leakpipe">Frozen/Leaking Pipes</label>
-			       <md-select v-model="leakpipe" name="leakpipe" id="leakpipe" md-dense>
+			       <md-select v-model="leakpipe" name="leakpipe" id="leakpipe"  @md-selected="getleakpipeVal('leak pipe', 10, 30)">
 		            <md-option value="1">1</md-option>
 		            <md-option value="2">2</md-option>
 		            <md-option value="3">3</md-option>
@@ -62,8 +62,8 @@
          	<div class="col-sm-6">
          		<md-field>
 			      <md-icon>gps_not_fixed</md-icon>
-			      <label for="waterline">Clogged Drains</label>
-			       <md-select v-model="waterline" name="waterline" id="waterline" md-dense>
+			      <label for="cloggedDrain">Clogged Drains</label>
+			       <md-select v-model="cloggedDrain" name="cloggedDrain" id="cloggedDrain"  @md-selected="getCloggedDrainVal('Clogged Drain', 10, 30)">
 		            <md-option value="1">1</md-option>
 		            <md-option value="2">2</md-option>
 		            <md-option value="3">3</md-option>
@@ -83,8 +83,8 @@
          	<div class="col-sm-6">
          		<md-field>
 			      <md-icon>hot_tub</md-icon>
-			      <label for="waterheater">Water Heater Repairs</label>
-			       <md-select v-model="waterheater" name="waterheater" id="waterheater" md-dense>
+			      <label for="waterHeater">Water Heater Repairs</label>
+			       <md-select v-model="waterHeater" name="waterHeater" id="waterheater"  @md-selected="getWaterHeaterVal('water heater', 10, 30)">
 		            <md-option value="1">1</md-option>
 		            <md-option value="2">2</md-option>
 		            <md-option value="3">3</md-option>

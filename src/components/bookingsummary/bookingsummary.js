@@ -8,17 +8,23 @@ export default {
     serviceDate: Object,
     duration: String,
     subServiceInfo: Array,
-    getTotalTime: Number
+    getTotalTime: Number,
+    getSubTotal: Number,
+    getDiscount: Number
+
   },
   data () {
     return {
       serviceName: '',
       serviceInfo: [],
-      serialcounter: 0, 
+      serialcounter: 0,
+      taxPrice: 10,
+      totalDiscountPrice: 0,
+      totalTaxPrice: 0
     }
   },
   computed: {
-   
+
   },
   mounted () {
   },
@@ -34,15 +40,93 @@ export default {
      //  });
        this.serialcounter = this.serialcounter - 1;
        bus.$emit('splice', obj);
+    },
+
+    calcDiscount: function(subtotal, discount = 0){
+      
+      let totalDiscount = 0
+      
+      if(discount > 0){
+
+        totalDiscount = (subtotal * discount)/100;
+        
+      }else if(discount = 0){
+
+        totalDiscount = 0;         
+      }
+
+      this.totalDiscountPrice = totalDiscount;
+
+      return totalDiscount;
+
+    
+//      return totalDiscount;
+    },
+
+    calTaxes: function(subtotal, discount = 0, taxPercent){
+      let totalDiscount = 0
+      let tax = 0;
+    
+      if(discount > 0){
+    
+        tax = ((subtotal - discount) * taxPercent) / 100;
+        
+      }else {
+    
+        tax = (subtotal * taxPercent) / 100;
+      }
+
+      this.totalTaxPrice = tax;
+
+      return tax;
+
+    },
+
+    calcTotal: function(subtotal, discount = 0, tax){
+
+      
+
+      let totalprice = 0;
+      let discountPrice = 0;
+      let taxPrice = 0;
+
+      if(discount > 0){
+      
+        discountPrice = (subtotal * discount) / 100;
+        taxPrice = ((subtotal - discountPrice) * tax) / 100;
+        return totalprice = subtotal + taxPrice;
+      
+      }else if(discount = 0){
+        
+        taxPrice = (subtotal * tax) / 100;
+        return taxPrice;
+      
+      }
     }
+
   },
   filters: {
     toUTC: function(val){
+
     },
+
     toHours: function(num){
-      var hours = Math.floor(num / 60);  
-      var minutes = num % 60;
-      return hours + ":" + minutes + " hour(s)"; 
+     
+      var hours = (num / 60);
+      var rhours = Math.floor(hours);
+      var minutes = (hours - rhours) * 60;
+      var rminutes = Math.round(minutes);
+      return rhours + " hour(s) " + rminutes + " minute(s)."; 
+    },
+
+    convertToCurrency: function(monetary_value){
+     let i = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 2
+            }).format(monetary_value); 
+
+      return i;
     }
   },
 
@@ -65,7 +149,6 @@ export default {
      
   },
 
-  watch:{
-     
+  watch:{    
   }
 }

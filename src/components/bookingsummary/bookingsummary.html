@@ -41,37 +41,37 @@
 			    </md-button>
       			<div class="row">
       				<div class="col-6 text-left servicename text-capitalize"><span>{{items.servicename}}</span></div>
-      				<div class="col-3 text-center">{{ items.serviceqty }}</div>
-      				<div class="col-3 text-right">{{items.serviceprice}}</div>
+      				<div class="col-3 text-center"><span v-if="items.serviceqty > 1" >{{ items.serviceqty }}</span></div>
+      				<div class="col-3 text-right">{{items.serviceprice | convertToCurrency}}</div>
       			</div>
       		</div>
-      		  
+      		  <hr />
 
-      		<div class="cart-items-list mb-2 mt-4">
+      		<div class="cart-items-list mb-2">
 	      		<div class="row">
-      				<div class="col-6 text-left servicename"><span>Sub Total</span></div>
-      				<div class="col-6 text-right">81.00</div>
+      				<div class="col-6 text-left servicename"><strong>Sub Total</strong></div>
+      				<div class="col-6 text-right">{{ getSubTotal | convertToCurrency }}</div>
       			</div>
       			<div class="row">
-      				<div class="col-6 text-left servicename"><span>Discount</span></div>
-      				<div class="col-6 text-right"><small>7.00</small></div>
+      				<div class="col-6 text-left servicename"><strong>Discount({{getDiscount}}%)</strong></div>
+      				<div class="col-6 text-right"><small>{{ (calcDiscount(getSubTotal, getDiscount))  | convertToCurrency }}</small></div>
       			</div>
       			<div class="row">
-      				<div class="col-6 text-left servicename"><span>Tax</span></div>
-      				<div class="col-6 text-right">7.09</div>
+      				<div class="col-6 text-left servicename"><strong>Tax <span v-if="taxPrice">({{taxPrice}}%)</span></strong></div>
+      				<div class="col-6 text-right">{{calTaxes(getSubTotal, totalDiscountPrice, taxPrice)  | convertToCurrency}}</div>
       			</div>
       		</div>
       	</div>
 
-      	<b-alert show variant="info">
+      	<b-alert show variant="info" class="mb-0">
       		<div class="mb-2">You only need to pay a deposit to confirm your booking. The remaining amount needs to be paid on arrival.</div>
       		<div class="row">
   				<div class="col-6 text-left servicename"><strong>Partial Deposit</strong></div>
-  				<div class="col-6 text-right">38.98</div>
+  				<div class="col-6 text-right">{{ (((getSubTotal - totalDiscountPrice) + totalTaxPrice) / 2) | convertToCurrency }}</div>
   			</div>
   			<div class="row">
   				<div class="col-6 text-left servicename"><strong>Remaining Amount</strong></div>
-  				<div class="col-6 text-right">38.98</div>
+  				<div class="col-6 text-right">{{ (((getSubTotal - totalDiscountPrice) + totalTaxPrice) / 2) | convertToCurrency }}</div>
   			</div>
       	</b-alert>
       </div>
@@ -82,12 +82,16 @@
         <md-card-header-text>
           <div class="md-title">
           	<div class="row">
-  				<div class="col-6 text-left servicename">Total</div>
-  				<div class="col-6 text-right">$77.96</div>
+  				<div class="col-6 text-left servicename"><strong>Total</strong></div>
+  				<div class="col-6 text-right"> 
+
+            {{ ((getSubTotal - totalDiscountPrice) + totalTaxPrice) | convertToCurrency }} 
+
+          </div>
   			</div>
           </div> 
         </md-card-header-text>
-      </md-card-header>
+      </md-card-header> 
     </md-card>
 
 </section>

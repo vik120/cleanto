@@ -93,16 +93,16 @@
 				      <md-card-content>
 				    	<div class="row">
 				    		<div class="col-md-3 col-sm-6">
-				    			<md-radio v-model="serviceduration" value="Monthly">Monthly <br /><small class="text-purple">{Save 10%}</small></md-radio>
+				    			<md-radio v-on:change="discountPrice(10)" v-model="serviceduration" value="Monthly">Monthly <br /><small class="text-purple">{Save 10%}</small></md-radio>
 				    		</div>
 				    		<div class="col-md-3 col-sm-6">
-				    			<md-radio v-model="serviceduration" value="Bi-weekly">Bi-weekly <br /> <small>{Save 12.5%}</small></md-radio>
+				    			<md-radio v-model="serviceduration"  v-on:change="discountPrice(12.5)" value="Bi-weekly">Bi-weekly <br /> <small>{Save 12.5%}</small></md-radio>
 				    		</div>
 				    		<div class="col-md-3 col-sm-6">
-				    			<md-radio v-model="serviceduration" value="weekly">Weekly <br /> <small>{Save 15%}</small></md-radio>
+				    			<md-radio v-model="serviceduration"  v-on:change="discountPrice(15)" value="weekly">Weekly <br /> <small>{Save 15%}</small></md-radio>
 				    		</div>
 				    		<div class="col-md-3 col-sm-6">
-				    			<md-radio v-model="serviceduration" value="once">Once <br /> <small>(No Discount)</small></md-radio>
+				    			<md-radio v-model="serviceduration"  v-on:change="discountPrice(0)" value="once">Once <br /> <small>(No Discount)</small></md-radio>
 				    		</div>
 				    	</div>  	
 				      </md-card-content>
@@ -214,11 +214,9 @@
 				      <md-card-actions  class="justify-content-center pb-4">
 				        <md-button type="submit" class="md-primary btn-lg">Complete Booking</md-button>
 				      </md-card-actions>
-				    </md-card>
-
-				    
-				      
+				    </md-card>				      
 				</div>
+				
 				<div class="col-md-4"> 
 					<book-summary 
 						v-bind:duration="serviceduration" 
@@ -227,6 +225,8 @@
 						:subServiceInfo="subService"
 						:counter="serialcounter"
 						:getTotalTime="totalTime"
+						:getSubTotal="subTotalPrice"
+						:getDiscount="discount"
 					>
 					</book-summary>
 				</div>

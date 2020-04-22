@@ -50,7 +50,7 @@
     </md-card>
 
     <h5 class="mt-4 mb-3">Extra Services</h5>
-    {{getSpliceItem}}
+    
     <div class="extra-service">
     	 <item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" v-on:sendExtraService="getExtraService" v-on:spliceItem="getSpliceItem" /> 
     </div>

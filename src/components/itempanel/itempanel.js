@@ -29,15 +29,14 @@ export default {
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
 
-    add(value, name, time, price){
+    add(value, name, price, time){
       if(this.counter < value){
         this.counter++;
         this.sendExtraService( name, price, this.counter, time);
-
       }
     },
 
-    minus(value,  name, time, price){
+    minus(value, name, price, time){
       if(this.counter > value){
         this.counter--;
         this.sendExtraService( name, price, this.counter, time);

@@ -12,7 +12,7 @@
 	         		<md-field>
 				      <md-icon>business</md-icon>
 				      <label for="buildwall">Build walls</label>
-				       <md-select v-model="buildwall" name="buildwall" id="buildwall" md-dense>
+				       <md-select v-model="buildwall" name="buildwall" id="buildwall" @md-selected="getbuildwallVal('buildwall', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -29,7 +29,7 @@
 	         		<md-field>
 				      <md-icon>view_quilt</md-icon>
 				      <label for="builddoorways">Build doorways</label>
-				       <md-select v-model="builddoorways" name="builddoorways" id="builddoorways" md-dense>
+				       <md-select v-model="builddoorways" name="builddoorways" id="builddoorways" @md-selected="getbuilddoorwaysVal('builddoorways', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -46,7 +46,7 @@
 	         		<md-field>
 				      <md-icon>developer_board</md-icon>
 				      <label for="buildwindows">Build windows</label>
-				       <md-select v-model="buildwindows" name="buildwindows" id="buildwindows" md-dense>
+				       <md-select v-model="buildwindows" name="buildwindows" id="buildwindows" @md-selected="getbuildwindowsVal('buildwindows', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -81,7 +81,7 @@
 
   	<h5 class="mt-4 mb-3" v-if="extraService">Extra Services</h5>
 
-	<item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" /> 
+	<item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" v-on:sendExtraService="getExtraService" v-on:spliceItem="getSpliceItem" /> 
 
 </section>
 

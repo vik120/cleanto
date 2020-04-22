@@ -37,7 +37,9 @@ export default {
       promocode: '',
       subService: {},
       serialcounter: 0,
-      totalTime: 0
+      totalTime: 0,
+      subTotalPrice: '',
+      discount: 0
     }
   },
   computed: {
@@ -54,11 +56,13 @@ export default {
     }),
 
     bus.$on('sendTotalTime', (data) => {
-      console.log(data)
+    //  console.log(data)
       return this.totalTime = data;
+    }),
+
+    bus.$on('subtotal', (data) => {
+      return this.subTotalPrice = data;
     })
-
-
   },
   methods: {
     dateClass(ymd, date) {
@@ -72,6 +76,10 @@ export default {
       }else{
         return undefined;
       }
+    },
+
+    discountPrice: function(value){
+      this.discount = value;
     }
 
   },
@@ -86,6 +94,12 @@ export default {
   },
 
   watch: {
-     
+     $route (to, from){
+       console.log(to, from)
+       this.discount = 0;
+       this.subTotalPrice = 0;
+       this.subService = [],
+       this.totalTime = 0
+    }
   }
 }

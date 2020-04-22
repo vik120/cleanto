@@ -29,7 +29,12 @@ export default {
           price: 10.00,
           haveQuanity: true
         }
-      ]
+      ],
+
+      getServiceInfo: [],
+      getServiceInfoAlpha: [],
+      getSpliceItem: '',
+      timeSlot: 0
     }
   },
   computed: {
@@ -39,6 +44,211 @@ export default {
      bus.$emit('servicename', 'Carpenter Service')
   },
   methods: {
+    ServiceInfoFun: function(obj){
+      var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
 
+      let time = 0;
+      let price = 0;
+
+      if (!existingIds.includes(obj.servicename)) { 
+
+        this.getServiceInfoAlpha.push(obj);
+        this.getServiceInfo = this.getServiceInfoAlpha;
+        this.getServiceInfo.forEach((element, index) => {
+          time = time + element.serviceTime;
+          price = price + element.serviceprice;
+        });
+
+        this.timeSlot = time;
+        this.SubTotalPrice = price;
+
+        bus.$emit('sendTotalTime', this.timeSlot);
+        bus.$emit('extraservice', this.getServiceInfo);
+        bus.$emit('subtotal', this.SubTotalPrice);
+
+      //   this.$store.dispatch('serviceListAction', this.getServiceInfo)
+      } else {
+
+        this.getServiceInfo.forEach((element, index) => {
+          if (element.servicename === obj.servicename) {
+
+            this.getServiceInfo[index] = obj;
+
+            //   this.$store.dispatch('serviceListAction', this.getServiceInfo);
+
+             this.getServiceInfo.forEach((element, index) => {
+                time = time + element.serviceTime;
+                price = price + element.serviceprice;
+              })
+
+             this.timeSlot = time;
+             this.SubTotalPrice = price;
+             
+             bus.$emit('sendTotalTime', this.timeSlot);
+             bus.$emit('extraservice', this.getServiceInfo);
+             bus.$emit('subtotal', this.SubTotalPrice);
+ 
+          };
+
+        });
+
+      };
+    },
+
+    // mergeArray: function(obj){
+
+    //   var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
+    //   let time = 0;
+    //   let price = 0;
+
+    //   if (!existingIds.includes(obj.servicename)) {
+
+    //    this.getServiceInfo.push(obj);
+
+    //     this.getServiceInfo.forEach((element, index) => {
+    //       time = time + element.serviceTime;
+    //       price = price + element.serviceprice;
+    //     }) 
+        
+    //     this.timeSlot = time;
+    //     this.SubTotalPrice = price;
+
+    //     bus.$emit('sendTotalTime', this.timeSlot);
+    //     bus.$emit('extraservice', this.getServiceInfo);
+    //     bus.$emit('subtotal', this.SubTotalPrice);
+         
+    //   } else {
+ 
+    //       this.getServiceInfo.forEach((element, index) => {
+
+    //         if (element.servicename === obj.servicename) {
+             
+    //           this.getServiceInfo[index] = obj;
+    //           bus.$emit('extraservice', this.getServiceInfo);
+
+    //         };
+    //       });
+
+    //       this.getServiceInfo.forEach((element, index) => {
+    //         time = time + element.serviceTime;
+    //         price = price + element.serviceprice;
+    //       });
+
+    //      this.timeSlot = time;
+    //      this.SubTotalPrice = price;
+
+    //      bus.$emit('sendTotalTime', this.timeSlot);
+    //      bus.$emit('subtotal', this.SubTotalPrice);
+
+    //   };
+
+    // },
+
+    spliceFun: function(data){
+      let time = 0;
+      let price = 0;
+
+      this.getServiceInfo.forEach((element, index) => {
+
+        if (element.servicename === data) {
+          
+          this.getServiceInfo.splice(index, 1);
+          bus.$emit('extraservice', this.getServiceInfo);
+
+          if(data == 'leak pipe'){
+        
+            this.leakpipe = '';
+        
+          }else if(data == 'waterline'){
+        
+            this.waterline = '';
+        
+          } else if(data == 'Clogged Drain'){
+        
+            this.cloggedDrain = '';
+        
+          }else if(data == 'water heater'){
+        
+            this.waterHeater = '';
+        
+          } 
+
+        };
+
+      });
+
+     this.getServiceInfo.forEach((element, index) => {
+          time = time + element.serviceTime;
+          price = price + element.serviceprice;
+      });
+
+      this.timeSlot = time;
+      this.SubTotalPrice = price;
+
+      bus.$emit('sendTotalTime', this.timeSlot);
+      bus.$emit('subtotal', this.SubTotalPrice);
+    },
+
+    getExtraService: function(val){ 
+     this.ServiceInfoFun(val);
+    },
+
+    getbuildwindowsVal: function(name, price, time){ 
+      if(this.buildwindows != ''){
+        var obj = {
+          servicename: name,
+          serviceprice: price * this.buildwindows,
+          serviceqty : this.buildwindows,
+          serviceTime: time * this.buildwindows
+        }
+       
+         this.ServiceInfoFun(obj);
+      }
+    },
+
+    getbuilddoorwaysVal: function(name, price, time){ 
+     
+      
+      if(this.builddoorways != ''){
+        var obj = {
+          servicename: name,
+          serviceprice: price * this.builddoorways,
+          serviceqty : this.builddoorways,
+          serviceTime: time * this.builddoorways
+        }
+       
+         this.ServiceInfoFun(obj);
+      }
+
+    },
+    getbuildwallVal: function(name, price, time){ 
+      if(this.buildwall != ''){
+        var obj = {
+          servicename: name,
+          serviceprice: price * this.buildwall,
+          serviceqty : this.buildwall,
+          serviceTime: time * this.buildwall
+        }
+       
+         this.ServiceInfoFun(obj);
+      }
+    },
+    getcleaningareaVal: function(name, price, time){ 
+      if(this.cleaningarea != ''){
+        var obj = {
+          servicename: name,
+          serviceprice: price * this.cleaningarea,
+          serviceqty : this.cleaningarea,
+          serviceTime: time * this.cleaningarea
+        }
+       
+         this.ServiceInfoFun(obj);
+      }
+    }
+  },
+  created(){
+    bus.$on('splice', (data) => {
+      this.spliceFun(data);
+    })
   }
 }
