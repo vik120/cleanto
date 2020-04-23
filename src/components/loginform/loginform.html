@@ -1,41 +1,46 @@
 <div>
-  
+  <form novalidate @submit.prevent="validateUser">
   <md-card class="md-primary mb-3" md-theme="white-card">
-    <md-card-header>
-      <div class="md-title">Login</div>
-    </md-card-header>
+    
+      <md-card-header>
+        <div class="md-title">Login</div>
+      </md-card-header>
 
-    <md-card-content>
-      <div class="row">
-        <div class="col-sm-6">
+      <md-card-content>
+        <div class="row">
+          <div class="col-sm-6">
 
-          <md-field :class="messageClass">
-            <md-icon>email</md-icon>
-            <label>Your Email</label>
-            <md-input v-model="email" required></md-input>
-            <span class="md-error">Please enter a valid email</span>
-          </md-field>
+            <md-field :class="{ 'md-invalid': $v.email.$invalid && $v.email.$dirty }">
+              <md-icon>email</md-icon>
+              <label>Your Email</label>
+              <md-input name="email" id="email" v-model="email" required></md-input> 
+              <span class="md-error">Please enter valid email address.</span>
+
+            </md-field>
+            
+           
+          </div>
+
+          <div class="col-sm-6">
+            <md-field :class="{ 'md-invalid': $v.password.$invalid && $v.password.$dirty }">
+              <md-icon>vpn_key</md-icon>
+              <label>Password</label>
+              <md-input type="password" v-model="password" id="password" name="password" required></md-input> 
+              <span class="md-error">Please enter your password.</span>
+            </md-field> 
+          </div>
         </div>
+      </md-card-content>
 
-        <div class="col-sm-6">
-          <md-field :class="messageClass">
-            <md-icon>vpn_key</md-icon>
-            <label>Password</label>
-            <md-input v-model="password" required></md-input>
-            <span class="md-error">There is an error</span>
-          </md-field>
+      <md-card-actions  class="justify-content-center pb-4">
+        <div>
+          <md-button type="submit" class="md-primary btn-lg">Login Now</md-button>
+          <b-button variant="default" @click="$bvModal.show('forgetpassword')">Forget Password?</b-button>
         </div>
-      </div>
-    </md-card-content>
+      </md-card-actions>
 
-    <md-card-actions  class="justify-content-center pb-4">
-      <div>
-        <md-button type="submit" class="md-primary btn-lg">Login Now</md-button>
-        <b-button variant="default" @click="$bvModal.show('forgetpassword')">Forget Password?</b-button>
-      </div>
-    </md-card-actions>
   </md-card>
-
+</form>
 <!-- <b-modal id="forgetpassword" title="Forget Password?">
   <p>Enter your email and we'll send you instructions on resetting your password.</p>
 

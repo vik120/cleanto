@@ -178,6 +178,12 @@ div{
 
 .md-field{
 	&.md-invalid{
+
+		&:after{
+			background: var(--danger);
+		}
+
+		.md-input,
 		.md-error{
 			color: var(--red);
 		}

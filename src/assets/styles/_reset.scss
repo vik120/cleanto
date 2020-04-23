@@ -31,6 +31,18 @@
     --font-family-monospace: $monospace;
 }
 
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 *{
 	margin: 0;
 	padding: 0;
@@ -43,6 +55,8 @@ body{
 	font-family: var(--font-family-sans-serif);
 	color: var(--gray);
     background: var(--light);
+ //   background: linear-gradient(-45deg, var(--light), #e7e8ec, #d8d9dc, #c8c8ca);
+    animation: gradient 15s ease infinite;
 
 	a{
 		text-decoration: none;

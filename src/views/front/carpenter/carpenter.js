@@ -13,20 +13,22 @@ export default {
       buildwindows: '',
       builddoorways: '',
       buildwall: '',
-      cleaningarea: '',
+      cleaningarea: 200,
       extraService: [
         {
           id: 0,
           image: 'damage-floor.jpg',
           name: 'Damaged Flooring',
           price: 10.00,
-          haveQuanity: false
+          haveQuanity: false,
+          time: 30,
         },
         {
           id: 1,
           image: 'door-jams.jpg',
           name: 'Door Jams',
           price: 10.00,
+          time: 30,
           haveQuanity: true
         }
       ],
@@ -94,55 +96,6 @@ export default {
 
       };
     },
-
-    // mergeArray: function(obj){
-
-    //   var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
-    //   let time = 0;
-    //   let price = 0;
-
-    //   if (!existingIds.includes(obj.servicename)) {
-
-    //    this.getServiceInfo.push(obj);
-
-    //     this.getServiceInfo.forEach((element, index) => {
-    //       time = time + element.serviceTime;
-    //       price = price + element.serviceprice;
-    //     }) 
-        
-    //     this.timeSlot = time;
-    //     this.SubTotalPrice = price;
-
-    //     bus.$emit('sendTotalTime', this.timeSlot);
-    //     bus.$emit('extraservice', this.getServiceInfo);
-    //     bus.$emit('subtotal', this.SubTotalPrice);
-         
-    //   } else {
- 
-    //       this.getServiceInfo.forEach((element, index) => {
-
-    //         if (element.servicename === obj.servicename) {
-             
-    //           this.getServiceInfo[index] = obj;
-    //           bus.$emit('extraservice', this.getServiceInfo);
-
-    //         };
-    //       });
-
-    //       this.getServiceInfo.forEach((element, index) => {
-    //         time = time + element.serviceTime;
-    //         price = price + element.serviceprice;
-    //       });
-
-    //      this.timeSlot = time;
-    //      this.SubTotalPrice = price;
-
-    //      bus.$emit('sendTotalTime', this.timeSlot);
-    //      bus.$emit('subtotal', this.SubTotalPrice);
-
-    //   };
-
-    // },
 
     spliceFun: function(data){
       let time = 0;
@@ -221,6 +174,7 @@ export default {
       }
 
     },
+    
     getbuildwallVal: function(name, price, time){ 
       if(this.buildwall != ''){
         var obj = {
@@ -233,8 +187,9 @@ export default {
          this.ServiceInfoFun(obj);
       }
     },
+
     getcleaningareaVal: function(name, price, time){ 
-      if(this.cleaningarea != ''){
+      if(this.cleaningarea != '' && this.cleaningarea > 99){
         var obj = {
           servicename: name,
           serviceprice: price * this.cleaningarea,

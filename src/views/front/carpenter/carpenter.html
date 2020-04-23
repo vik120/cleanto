@@ -12,7 +12,7 @@
 	         		<md-field>
 				      <md-icon>business</md-icon>
 				      <label for="buildwall">Build walls</label>
-				       <md-select v-model="buildwall" name="buildwall" id="buildwall" @md-selected="getbuildwallVal('buildwall', 10, 30)">
+				       <md-select v-model="buildwall" name="buildwall" id="buildwall" @md-selected="getbuildwallVal('build wall', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -29,7 +29,7 @@
 	         		<md-field>
 				      <md-icon>view_quilt</md-icon>
 				      <label for="builddoorways">Build doorways</label>
-				       <md-select v-model="builddoorways" name="builddoorways" id="builddoorways" @md-selected="getbuilddoorwaysVal('builddoorways', 10, 30)">
+				       <md-select v-model="builddoorways" name="builddoorways" id="builddoorways" @md-selected="getbuilddoorwaysVal('build doorways', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -46,7 +46,7 @@
 	         		<md-field>
 				      <md-icon>developer_board</md-icon>
 				      <label for="buildwindows">Build windows</label>
-				       <md-select v-model="buildwindows" name="buildwindows" id="buildwindows" @md-selected="getbuildwindowsVal('buildwindows', 10, 30)">
+				       <md-select v-model="buildwindows" name="buildwindows" id="buildwindows" @md-selected="getbuildwindowsVal('build windows', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -70,11 +70,14 @@
     		<div class="md-title">Remodeling or enhancing existing structures </div>
     	</md-card-header>
 		<md-card-content>
-			<md-field>
+			<md-field class="md-has-value" :class="{'md-invalid': errors.has('cleaningarea') }">
 				<md-icon>aspect_ratio</md-icon>
 				<label>Area of Cleaning</label>
-				<md-input v-model="cleaningarea"></md-input>
+				<!-- <md-input v-model="cleaningarea" v-on:keyup="getcleaningareaVal('Area Clean(sqft)', 10, 30)"></md-input> -->
+				<input type="text"  v-validate="{ numeric: true, min_value: 100 }"  class="md-input" name="cleaningarea" v-model="cleaningarea" id="cleaningarea" v-on:keyup="getcleaningareaVal('Remodeling or enhancing existing structures (sqft)', 2, 30)" />
 				<span class="md-suffix">sq. ft.</span>
+
+				<span class="md-error" v-if="errors.has('cleaningarea')">{{ errors.first('cleaningarea') }}</span>
 			</md-field>
 		</md-card-content>
   	</md-card>

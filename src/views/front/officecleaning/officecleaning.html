@@ -12,7 +12,7 @@
 	         		<md-field>
 				      <md-icon>business</md-icon>
 				      <label for="deskcleaning">Swiping With Desk Cleaning</label>
-				       <md-select v-model="deskcleaning" name="deskcleaning" id="deskcleaning">
+				       <md-select v-model="deskcleaning" name="deskcleaning" id="deskcleaning"  @md-selected="getDiskCleanVal('desk clean', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -29,7 +29,7 @@
 	         		<md-field>
 				      <md-icon>view_quilt</md-icon>
 				      <label for="windowclean">Doors And Window Cleaning</label>
-				       <md-select v-model="windowclean" name="windowclean" id="windowclean">
+				       <md-select v-model="windowclean" name="windowclean" id="windowclean" @md-selected="getWindowCleanVal('Door-window clean', 10, 30)">
 			            <md-option value="1">1</md-option>
 			            <md-option value="2">2</md-option>
 			            <md-option value="3">3</md-option>
@@ -54,17 +54,20 @@
     		<div class="md-title">Remodeling or enhancing existing structures </div>
     	</md-card-header>
 		<md-card-content>
-			<md-field>
+			<md-field class="md-has-value" :class="{'md-invalid': errors.has('cleaningarea') }">
 				<md-icon>aspect_ratio</md-icon>
 				<label>Area of Cleaning</label>
-				<md-input v-model="officearea"></md-input>
+				<!-- <md-input v-model="cleaningarea" v-on:keyup="getcleaningareaVal('Area Clean(sqft)', 10, 30)"></md-input> -->
+				<input type="text"  v-validate="{ numeric: true, min_value: 100 }"  class="md-input" name="cleaningarea" v-model="cleaningarea" id="cleaningarea" v-on:keyup="getcleaningareaVal('Remodeling or enhancing existing structures (sqft)', 2, 30)" />
 				<span class="md-suffix">sq. ft.</span>
+
+				<span class="md-error" v-if="errors.has('cleaningarea')">{{ errors.first('cleaningarea') }}</span>
 			</md-field>
 		</md-card-content>
   	</md-card>
 
   	<h5 class="mt-4 mb-3" v-if="extraService">Extra Services</h5>
 
-	<item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" /> 
+	<item-panel v-for="items in extraService" v-bind:key="items.id" :itemcontent="items"  class="mb-3" v-on:sendExtraService="getExtraService" v-on:spliceItem="getSpliceItem" /> 
 </section>
 

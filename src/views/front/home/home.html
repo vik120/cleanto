@@ -15,7 +15,7 @@
 						      		<md-icon>home</md-icon>
 									<label for="zipcode">Zip or Postal Code</label>
 									<!-- <md-input type="text"   rules="required" data-v-validate="'numeric'"></md-input> -->
-									<input type="text"  v-validate="'required|max:6/numeric'" class="md-input" name="zipcode" v-model="zipcode" id="zipcode" />
+									<input type="text"  v-validate="'required|max:6|numeric|min:'" class="md-input" name="zipcode" v-model="zipcode" id="zipcode" />
 									<span class="md-error" v-if="errors.has('zipcode')">Please put correct zip code</span>
 							    
 							    </md-field>
@@ -150,32 +150,30 @@
 						    <md-button type="button" class="md-primary btn-lg">Apply Promocode</md-button>
 				    	</md-card-content>
 				    </md-card>
+				     {{ ($store.getters.getLogin).length }} {{ !token }}
+				    <div v-if="!token">
+					    <md-card class="md-primary mb-3" md-theme="white-card">
+					      <md-card-header>
+					        <div class="md-title">Your Personal Details</div>
+					      </md-card-header>
+					      <md-card-content>
+					    	<div class="row">
+					    		<div class="col-md-4 col-sm-6">
+					    			<md-radio v-model="userinfo" value="existing">Existing User</md-radio>
+					    		</div>
+					    		<div class="col-md-4 col-sm-6">
+					    			<md-radio v-model="userinfo" value="newuser">New User</md-radio>
+					    		</div>
+					    		<div class="col-md-4 col-sm-6">
+					    			<md-radio v-model="userinfo" value="guestuser">Guest User</md-radio>
+					    		</div> 
+					    	</div>	
+					      </md-card-content>
+					    </md-card> 
 
-				    <md-card class="md-primary mb-3" md-theme="white-card">
-				      <md-card-header>
-				        <div class="md-title">Your Personal Details</div>
-				      </md-card-header>
-				      <md-card-content>
-				    	<div class="row">
-				    		<div class="col-md-4 col-sm-6">
-				    			<md-radio v-model="userinfo" value="existing">Existing User</md-radio>
-				    		</div>
-				    		<div class="col-md-4 col-sm-6">
-				    			<md-radio v-model="userinfo" value="newuser">New User</md-radio>
-				    		</div>
-				    		<div class="col-md-4 col-sm-6">
-				    			<md-radio v-model="userinfo" value="guestuser">Guest User</md-radio>
-				    		</div> 
-				    	</div>	
-				      </md-card-content>
-				    </md-card> 
+					    <component :is="userinfo"></component> 
 
-				    <component :is="userinfo"></component>
-
-				   <!--  <login v-if="userinfo == 'existing'" />
-				    <register v-if="userinfo == 'newuser'" />
-				    <guest v-if="userinfo == 'guestuser'" /> -->
-
+					</div>
 
 				    <md-card class="md-primary mb-3" md-theme="white-card">
 				      <md-card-header>

@@ -76,54 +76,7 @@ export default {
       };
     },
 
-    mergeArray: function(obj){
-
-      var existingIds = this.getServiceInfo.map((obj) => obj.servicename);
-      let time = 0;
-      let price = 0;
-
-      if (!existingIds.includes(obj.servicename)) {
-
-       this.getServiceInfo.push(obj);
-
-        this.getServiceInfo.forEach((element, index) => {
-          time = time + element.serviceTime;
-          price = price + element.serviceprice;
-        }) 
-        
-        this.timeSlot = time;
-        this.SubTotalPrice = price;
-
-        bus.$emit('sendTotalTime', this.timeSlot);
-        bus.$emit('extraservice', this.getServiceInfo);
-        bus.$emit('subtotal', this.SubTotalPrice);
-         
-      } else {
- 
-          this.getServiceInfo.forEach((element, index) => {
-
-            if (element.servicename === obj.servicename) {
-             
-              this.getServiceInfo[index] = obj;
-              bus.$emit('extraservice', this.getServiceInfo);
-
-            };
-          });
-
-          this.getServiceInfo.forEach((element, index) => {
-            time = time + element.serviceTime;
-            price = price + element.serviceprice;
-          });
-
-         this.timeSlot = time;
-         this.SubTotalPrice = price;
-
-         bus.$emit('sendTotalTime', this.timeSlot);
-         bus.$emit('subtotal', this.SubTotalPrice);
-
-      };
-
-    },
+    
 
     spliceFun: function(data){
       let time = 0;
@@ -222,7 +175,7 @@ export default {
          this.ServiceInfoFun(obj);
       }
     }
-    
+
   },
   created(){
     bus.$on('splice', (data) => {

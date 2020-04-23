@@ -5,6 +5,7 @@ import HouseCleaning from '../views/front/housecleaning/index'
 import Plumbing from '../views/front/plumbing/index'
 import Carpenter from '../views/front/carpenter/index'
 import OfficeClean from '../views/front/officecleaning/index'
+import Login from '../components/loginform/index'
 
 Vue.use(VueRouter)
 
@@ -31,7 +32,13 @@ Vue.use(VueRouter)
         component: OfficeClean
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
+
 ]
 
 const router = new VueRouter({

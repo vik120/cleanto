@@ -40,7 +40,7 @@
 			    	<md-icon>close</md-icon>
 			    </md-button>
       			<div class="row">
-      				<div class="col-6 text-left servicename text-capitalize"><span>{{items.servicename}}</span></div>
+      				<div class="col-6 text-left servicename text-capitalize" :title="items.servicename"><span>{{items.servicename}}</span></div>
       				<div class="col-3 text-center"><span v-if="items.serviceqty > 1" >{{ items.serviceqty }}</span></div>
       				<div class="col-3 text-right">{{items.serviceprice | convertToCurrency}}</div>
       			</div>
@@ -49,15 +49,15 @@
 
       		<div class="cart-items-list mb-2">
 	      		<div class="row">
-      				<div class="col-6 text-left servicename"><strong>Sub Total</strong></div>
+      				<div class="col-6 text-left"><strong>Sub Total</strong></div>
       				<div class="col-6 text-right">{{ getSubTotal | convertToCurrency }}</div>
       			</div>
       			<div class="row">
-      				<div class="col-6 text-left servicename"><strong>Discount({{getDiscount}}%)</strong></div>
-      				<div class="col-6 text-right"><small>{{ (calcDiscount(getSubTotal, getDiscount))  | convertToCurrency }}</small></div>
+      				<div class="col-6 text-left"><strong>Discount({{getDiscount}}%)</strong></div>
+      				<div class="col-6 text-right">{{ (calcDiscount(getSubTotal, getDiscount))  | convertToCurrency }}</div>
       			</div>
       			<div class="row">
-      				<div class="col-6 text-left servicename"><strong>Tax <span v-if="taxPrice">({{taxPrice}}%)</span></strong></div>
+      				<div class="col-6 text-left"><strong>Tax <span v-if="taxPrice">({{taxPrice}}%)</span></strong></div>
       				<div class="col-6 text-right">{{calTaxes(getSubTotal, totalDiscountPrice, taxPrice)  | convertToCurrency}}</div>
       			</div>
       		</div>

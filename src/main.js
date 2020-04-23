@@ -10,6 +10,7 @@ import VeeValidate from 'vee-validate';
 import $ from 'jquery'  
 import { BootstrapVue, IconsPlugin, NavbarPlugin, FormInputPlugin, CardPlugin, CalendarPlugin, ModalPlugin, ButtonPlugin, TooltipPlugin, AlertPlugin } from 'bootstrap-vue'
 import FunctionalCalendar from 'vue-functional-calendar';
+import Vuelidate from 'vuelidate'
  
 
 Vue.config.productionTip = false 
@@ -18,13 +19,16 @@ Vue.use(NavbarPlugin, FormInputPlugin)
 Vue.use(CardPlugin)
 Vue.use(ModalPlugin)
 Vue.use(AlertPlugin)
-Vue.use(ButtonPlugin, TooltipPlugin)
+Vue.use(ButtonPlugin)
+Vue.use(TooltipPlugin)
 
 Vue.use(FunctionalCalendar, {
     dayNames: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 });
 
-Vue.use(VueMaterial)
+Vue.use(VueMaterial);
+
+Vue.use(Vuelidate);
 
 Vue.use(VeeValidate, {
   mode: 'eager'

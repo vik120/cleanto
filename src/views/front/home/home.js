@@ -39,7 +39,8 @@ export default {
       serialcounter: 0,
       totalTime: 0,
       subTotalPrice: '',
-      discount: 0
+      discount: 0,
+      token: localStorage.getItem('u') || ''
     }
   },
   computed: {
