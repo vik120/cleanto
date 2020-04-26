@@ -6,7 +6,7 @@ import GuestForm from '../../../components/guestform/index'
 import CardPayment from '../../../components/cardpayment/index'
 import BookingSummary from '../../../components/bookingsummary/index'
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
-import Vue from 'vue';
+
 
 import { bus } from '../../../main';
 

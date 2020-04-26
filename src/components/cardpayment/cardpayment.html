@@ -5,50 +5,9 @@
 
     <md-card-content>
         	
-    	<div class="row">
-    		<div class="col-md-6">
-    			<md-field>
-			      <md-icon>supervisor_account</md-icon>
-			      <label>Card Name</label>
-			      <md-input v-model="cardName"></md-input>
-			    </md-field>
-    		</div>
+    	 
 
-    		<div class="col-md-6">
-    			<md-field>
-			      <md-icon>credit_card</md-icon>
-			      <label>Card Number</label>
-			      <md-input v-model="cardNumber"></md-input>
-			    </md-field>
-    		</div>
-
-    		<div class="col-md-8">
-    			<div class="row">
-    				<div class="col-sm-6">
-    					<md-field>
-					      <md-icon>calendar_today</md-icon>
-					      <label>Expiry Date</label>
-					      <md-input v-model="expireDate"></md-input>
-					    </md-field>
-    				</div>
-    				<div class="col-sm-6">
-    					<md-field>
-					      <md-icon>calendar_today</md-icon>
-					      <label>Expiry Year</label>
-					      <md-input v-model="expireYear"></md-input>
-					    </md-field>
-    				</div>
-    			</div>
-    		</div>
-    		<div class="col-md-4">
-    			<md-field>
-			      <md-icon>vpn_key</md-icon>
-			      <label>CVV</label>
-			      <md-input v-model="cardCVV"></md-input>
-			    </md-field>
-    		</div>
-
-    	</div>
+        <v-credit-card /> 
 
 
     </md-card-content>

@@ -1,8 +1,12 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email } from 'vuelidate/lib/validators'
+
+
 export default {
   name: 'loginform',
-  components: {},
+  components: {
+   
+  },
   props: [],
   mixins: [validationMixin],
   data () {

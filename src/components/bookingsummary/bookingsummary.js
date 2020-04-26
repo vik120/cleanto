@@ -9,7 +9,7 @@ export default {
     duration: String,
     subServiceInfo: Array,
     getTotalTime: Number,
-    getSubTotal: Number,
+    getSubTotal: '',
     getDiscount: Number
 
   },

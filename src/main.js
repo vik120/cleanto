@@ -9,8 +9,11 @@ import VeeValidate from 'vee-validate';
 
 import $ from 'jquery'  
 import { BootstrapVue, IconsPlugin, NavbarPlugin, FormInputPlugin, CardPlugin, CalendarPlugin, ModalPlugin, ButtonPlugin, TooltipPlugin, AlertPlugin } from 'bootstrap-vue'
+
 import FunctionalCalendar from 'vue-functional-calendar';
+
 import Vuelidate from 'vuelidate'
+import VCreditCard from 'v-credit-card';
  
 
 Vue.config.productionTip = false 
@@ -33,6 +36,9 @@ Vue.use(Vuelidate);
 Vue.use(VeeValidate, {
   mode: 'eager'
 });
+
+
+Vue.component('v-credit-card', VCreditCard)
 
 // Custom Direcitve
 

@@ -1,6 +1,9 @@
+ 
+
 export default {
   name: 'cardpayment',
-  components: {},
+  components: { 
+  },
   props: [],
   data () {
     return {
@@ -8,16 +11,19 @@ export default {
       cardName: '',
       expireDate: '',
       expireYear: '',
-      cardCVV: ''
+      cardCVV: '',
+      card: ''
     }
   },
   computed: {
 
   },
   mounted () {
-
+    
   },
   methods: {
-
+    creditInfoChanged(values) {
+        console.log('Credit card fields', values); 
+    }
   }
 }
